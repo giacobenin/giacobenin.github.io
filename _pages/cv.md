@@ -30,8 +30,9 @@ identified by its Wikidata item where one exists.
     {%- assign text = item.text | xml_escape -%}
     {%- for entry in site.data.technologies -%}
       {%- if entry[1].mention and text contains entry[0] -%}
-        {%- capture concept -%}{% include concept.html name=entry[0] %}{%- endcapture -%}
-        {%- assign text = text | replace: entry[0], concept -%}
+        {%- assign concept_name = entry[0] -%}
+        {%- capture concept -%}{% include concept.html name=concept_name %}{%- endcapture -%}
+        {%- assign text = text | replace: concept_name, concept -%}
       {%- endif -%}
     {%- endfor %}
   <li>{{ text }}
