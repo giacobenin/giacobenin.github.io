@@ -1,9 +1,9 @@
 ---
 permalink: /publications/
 title: "Publications"
+lead: "Selected publications. The full list is on [Google Scholar](https://scholar.google.com/citations?user=fa77M2IAAAAJ)."
+rows: true
 ---
-
-Selected publications. The full list is on [Google Scholar](https://scholar.google.com/citations?user=fa77M2IAAAAJ).
 
 {% comment %}
 Each publication is marked up with RDFa using both schema.org (read by search
@@ -15,17 +15,20 @@ engines) and FOAF. Co-author home pages come from _data/coauthors.yml.
   {%- assign parts = section | split: ":" -%}
   {%- assign pubs = site.publications | where: "pubtype", parts[0] | sort: "date" | reverse -%}
   {%- if pubs.size > 0 %}
+<section class="row">
 <h2 id="{{ parts[0] }}s">{{ parts[1] }}</h2>
-<ul>
+<ol class="pubs">
     {%- for pub in pubs %}
       {%- if pub.pubtype == "paper" %}{% assign pubclass = "schema:ScholarlyArticle" %}{% else %}{% assign pubclass = "schema:CreativeWork" %}{% endif %}
-  <li typeof="{{ pubclass }} foaf:Document">
+  <li class="pub" typeof="{{ pubclass }} foaf:Document">
+    <span class="yr">{{ pub.date | date: '%Y' }}</span>
+    <div>
     {%- if pub.paperurl -%}
-    <a property="schema:url" href="{{ pub.paperurl }}"><strong property="schema:name dc:title">{{ pub.title }}</strong></a>
+    <a class="pub-title" property="schema:url" href="{{ pub.paperurl }}"><span property="schema:name dc:title">{{ pub.title }}</span></a>
     {%- else -%}
-    <strong property="schema:name dc:title">{{ pub.title }}</strong>
+    <span class="pub-title" property="schema:name dc:title">{{ pub.title }}</span>
     {%- endif -%}
-    <br>
+    <br><span class="meta">
     {%- for author in pub.authors -%}
       {%- assign homepage = site.data.coauthors[author] -%}
       {%- comment -%} One stable IRI per person, so the same co-author is one node across publications. {%- endcomment -%}
@@ -43,11 +46,13 @@ engines) and FOAF. Co-author home pages come from _data/coauthors.yml.
       </span>
       {%- unless forloop.last %}, {% endunless -%}
     {%- endfor -%}
-    {%- if pub.et_al %}, et al.{% else %}.{% endif %} <em>{{ pub.venue }}</em>.
+    {%- if pub.et_al %}, et al.{% else %}.{% endif %} <em>{{ pub.venue }}</em>.</span>
     <meta property="schema:datePublished" content="{{ pub.date | date: '%Y' }}">
+    </div>
   </li>
     {%- endfor %}
-</ul>
+</ol>
+</section>
   {%- endif %}
 {% endfor %}
 </div>

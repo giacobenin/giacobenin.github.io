@@ -1,0 +1,24 @@
+---
+layout: default
+---
+<h1 class="page-title">{{ page.title }}<span class="dot">.</span></h1>
+
+{%- if page.lead %}
+<div class="page-lead">{{ page.lead | markdownify }}</div>
+{%- endif %}
+
+{%- comment -%}
+Templated pages (CV, Publications) emit their own <section class="row"> blocks.
+Plain Markdown pages are wrapped in one row; set `label` in front matter to
+give it a left-column label.
+{%- endcomment -%}
+{%- if page.rows %}
+{{ content }}
+{%- else %}
+<section class="row">
+  {% if page.label %}<h2>{{ page.label }}</h2>{% else %}<div></div>{% endif %}
+  <div class="prose">
+{{ content }}
+  </div>
+</section>
+{%- endif %}

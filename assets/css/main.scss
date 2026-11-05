@@ -1,35 +1,162 @@
 ---
-# Overrides the theme's main stylesheet; the front matter dashes are required.
+# Site stylesheet (no theme). The front matter dashes are required for Jekyll
+# to compile this file.
 ---
 
-@charset "utf-8";
+// Minimal Swiss: one heavy grotesque, a strict label | content grid,
+// black on white with a single orange accent.
 
-@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
-@import "minimal-mistakes";
+$ink: #111;
+$muted: #6b6b6b;
+$rule: #dddddd;
+$accent: #ff4a1c;
+$bg: #fff;
+$font: "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$max: 1120px;
+$gap: 32px;
+$narrow: 820px;
 
-/* Site customizations */
+*, *::before, *::after { box-sizing: border-box; }
 
-// The name already appears in the masthead, so hide it in the sidebar profile.
-.author__name {
-  display: none;
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: $bg;
+  color: $ink;
+  font: 17px/1.55 $font;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
 }
 
-// Technology tags on the CV page.
-.tech-tags {
-  display: block;
-  margin-top: 0.35em;
+a {
+  color: $ink;
+  text-decoration: underline;
+  text-decoration-color: $accent;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  &:hover { color: $accent; }
 }
 
+:focus-visible { outline: 2px solid $accent; outline-offset: 2px; }
+
+.skip {
+  position: absolute; left: -9999px; top: 0;
+  &:focus { left: 16px; top: 12px; background: $bg; padding: 6px 10px; z-index: 10; }
+}
+
+.wrap { max-width: $max; margin: 0 auto; padding: 40px $gap 64px; }
+
+// Top bar
+.top {
+  display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px 24px;
+  border-bottom: 2px solid $ink;
+  padding-bottom: 12px;
+  font-size: 14px; font-weight: 500;
+  a { text-decoration: none; }
+  nav a { margin-left: 28px; &:first-child { margin-left: 0; } }
+  nav a.on { color: $accent; }
+}
+
+// Home hero
+.hero {
+  display: grid; grid-template-columns: 2fr 1fr; gap: $gap;
+  padding: 72px 0 56px;
+  border-bottom: 1px solid $rule;
+  h1 {
+    margin: 0;
+    font-weight: 800; font-size: clamp(56px, 9vw, 120px); line-height: .9; letter-spacing: -0.045em;
+  }
+}
+.hero-side {
+  align-self: end; font-size: 15px;
+  p { margin: 0 0 14px; }
+}
+.hero-links a, .foot-links a {
+  display: inline-block; margin-right: 14px; font-weight: 500;
+  text-decoration: none; border-bottom: 2px solid $accent;
+  &:hover { color: $accent; }
+}
+.dot { color: $accent; }
+
+// Inner page title
+.page-title {
+  margin: 0;
+  padding: 64px 0 40px;
+  border-bottom: 1px solid $rule;
+  font-weight: 800; font-size: clamp(44px, 7vw, 88px); line-height: .95; letter-spacing: -0.04em;
+}
+.page-lead { margin: 20px 0 0; color: $muted; max-width: 62ch; }
+
+// Label | content rows
+.row {
+  display: grid; grid-template-columns: 1fr 2fr; gap: $gap;
+  padding: 40px 0;
+  border-bottom: 1px solid $rule;
+  > h2 {
+    margin: 4px 0 0;
+    font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+  }
+}
+
+.prose {
+  max-width: 62ch;
+  > :first-child { margin-top: 0; }
+  p, ul, ol { margin: 0 0 14px; }
+  h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin: 28px 0 8px; }
+  h3 { font-size: 18px; font-weight: 700; margin: 24px 0 6px; }
+}
+
+// CV
+.job { margin-bottom: 36px; &:last-child { margin-bottom: 0; } }
+.job-head {
+  display: grid; grid-template-columns: 1fr auto; gap: 0 16px;
+  h3 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+  .when { font-size: 14px; color: $muted; font-variant-numeric: tabular-nums; padding-top: 5px; white-space: nowrap; }
+  .where { grid-column: 1 / -1; color: $muted; font-size: 15px; }
+}
+.items {
+  list-style: none; counter-reset: item; padding: 0; margin: 18px 0 0;
+  > li {
+    counter-increment: item;
+    display: grid; grid-template-columns: 36px 1fr;
+    margin-bottom: 16px;
+    &::before {
+      content: counter(item, decimal-leading-zero);
+      color: $accent; font-weight: 700; font-size: 14px; padding-top: 3px;
+    }
+  }
+}
+.tech-tags { display: block; margin-top: 6px; }
 .tech-tag {
-  display: inline-block;
-  margin: 0 0.35em 0.35em 0;
-  padding: 0.1em 0.6em;
-  font-family: $sans-serif;
-  font-size: $type-size-6;
-  line-height: 1.6;
-  color: $muted-text-color;
-  background-color: $code-background-color;
-  border: 1px solid $border-color;
-  border-radius: $border-radius;
-  white-space: nowrap;
+  display: inline-block; margin-right: 12px;
+  font-size: 13px; font-weight: 500; color: $muted;
+  &::before { content: "#"; color: $accent; }
+}
+
+// Publications
+.pubs { list-style: none; padding: 0; margin: 0; }
+.pub {
+  display: grid; grid-template-columns: 64px 1fr;
+  margin-bottom: 18px;
+  &:last-child { margin-bottom: 0; }
+  .yr { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .pub-title { font-weight: 700; }
+  a.pub-title { text-decoration-thickness: 2px; }
+  .meta { color: $muted; font-size: 15px; }
+}
+
+// Footer
+.foot {
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  margin-top: 48px; font-size: 14px; color: $muted;
+}
+
+@media (max-width: $narrow) {
+  .wrap { padding: 24px 20px 48px; }
+  .hero, .row { grid-template-columns: 1fr; }
+  .hero { padding: 48px 0 40px; gap: 20px; }
+  .row { gap: 12px; padding: 28px 0; }
+  .top nav a { margin-left: 16px; }
+  .page-title { padding: 40px 0 28px; }
 }

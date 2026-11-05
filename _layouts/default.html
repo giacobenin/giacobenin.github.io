@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="{{ site.locale | default: 'en' | slice: 0, 2 }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% seo %}
+  {% feed_meta %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700;800&display=swap">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="{{ '/' | relative_url }}">{{ site.url | remove: 'https://' | remove: 'http://' }}</a>
+      <nav aria-label="Main">
+        <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="on" aria-current="page"{% endif %}>About</a>
+        {%- for item in site.data.navigation.main %}
+        <a href="{{ item.url | relative_url }}"{% if page.url == item.url %} class="on" aria-current="page"{% endif %}>{{ item.title }}</a>
+        {%- endfor %}
+      </nav>
+    </header>
+
+    <main id="main">
+{{ content }}
+    </main>
+
+    <footer class="foot">
+      <span>© {{ site.time | date: '%Y' }} {{ site.author.name }}</span>
+      <span class="foot-links">
+        {%- for link in site.author.links %}
+        <a href="{{ link.url }}" rel="me">{{ link.label }}</a>
+        {%- endfor %}
+      </span>
+    </footer>
+  </div>
+</body>
+</html>

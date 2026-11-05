@@ -1,0 +1,22 @@
+---
+layout: default
+---
+{%- assign name_parts = site.author.name | split: ' ' -%}
+<div class="hero">
+  <h1>{{ name_parts | join: '<br>' }}<span class="dot">.</span></h1>
+  <div class="hero-side">
+    <p>{{ site.description }}</p>
+    <p class="hero-links">
+      {%- for link in site.author.links %}
+      <a href="{{ link.url }}" rel="me">{{ link.label }}</a>
+      {%- endfor %}
+    </p>
+  </div>
+</div>
+
+<section class="row">
+  <h2>{{ page.title | default: 'About' }}</h2>
+  <div class="prose">
+{{ content }}
+  </div>
+</section>
