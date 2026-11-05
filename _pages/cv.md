@@ -32,10 +32,15 @@ identified by its Wikidata item where one exists.
       {%- for tag in item.tags -%}
         {%- assign tech = site.data.technologies[tag] -%}
         {%- if tech.wikidata -%}
-        <span class="tech-tag" property="schema:knowsAbout foaf:topic_interest" resource="http://www.wikidata.org/entity/{{ tech.wikidata }}" typeof="schema:Thing"><span property="schema:name">{{ tag | xml_escape }}</span></span>
+          {%- capture tech_id %}http://www.wikidata.org/entity/{{ tech.wikidata }}{% endcapture -%}
         {%- else -%}
-        <span class="tech-tag" property="schema:knowsAbout foaf:topic_interest" resource="{{ '/cv/' | absolute_url }}#tech-{{ tag | slugify }}" typeof="schema:Thing"><span property="schema:name">{{ tag | xml_escape }}</span></span>
+          {%- capture tech_id %}{{ '/cv/' | absolute_url }}#tech-{{ tag | slugify }}{% endcapture -%}
         {%- endif -%}
+        <span class="tech-tag" property="schema:knowsAbout foaf:topic_interest" resource="{{ tech_id }}" typeof="schema:{{ tech.type | default: 'Thing' }}"><span property="schema:name">{{ tag | xml_escape }}</span>
+          {%- if tech.url %}<link property="schema:url schema:sameAs" href="{{ tech.url }}">{% endif -%}
+          {%- if tech.provider %}<link property="schema:provider" href="http://www.wikidata.org/entity/{{ tech.provider }}">{% endif -%}
+          {%- if tech.part_of %}<link property="schema:isPartOf" href="http://www.wikidata.org/entity/{{ tech.part_of }}">{% endif -%}
+        </span>
       {%- endfor -%}
     </span>
     {%- endif %}

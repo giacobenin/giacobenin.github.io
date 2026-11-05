@@ -40,7 +40,8 @@ Then open http://localhost:4000.
   (front matter: `title`, `date`, `authors` as a list, optional `et_al: true`,
   `venue`, `pubtype` — `patent` or `paper` — and optional `paperurl`)
 - CV: roles and bullets in `_data/cv.yml`; technology tags in
-  `_data/technologies.yml` (tag text → optional Wikidata item ID).
+  `_data/technologies.yml` (Wikidata ID or official URL, type, provider;
+  field reference at the top of the file).
 - Co-author links: `_data/coauthors.yml` maps each author name, as written in
   `authors`, to their home page. The Publications page marks authors up with
   schema.org and FOAF (RDFa).
