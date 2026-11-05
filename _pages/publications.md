@@ -28,7 +28,8 @@ engines) and FOAF. Co-author home pages come from _data/coauthors.yml.
     <br>
     {%- for author in pub.authors -%}
       {%- assign homepage = site.data.coauthors[author] -%}
-      <span property="schema:author foaf:maker" typeof="schema:Person foaf:Person">
+      {%- comment -%} One stable IRI per person, so the same co-author is one node across publications. {%- endcomment -%}
+      <span property="schema:author foaf:maker" resource="{{ '/publications/' | absolute_url }}#{{ author | slugify }}" typeof="schema:Person foaf:Person">
       {%- if homepage -%}
         <a property="schema:url foaf:homepage" href="{{ homepage }}"><span property="schema:name foaf:name">{{ author }}</span></a>
       {%- else -%}
