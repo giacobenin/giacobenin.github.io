@@ -1,8 +1,7 @@
 # gbenin.casa
 
-Personal site of Giacomo Benincasa, built with Jekyll and the
-[Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/) theme,
-hosted on GitHub Pages.
+Personal site of Giacomo Benincasa, built with Jekyll (no theme: layouts in
+`_layouts/`, styles in `assets/css/main.scss`) and hosted on GitHub Pages.
 
 ## Publish
 
@@ -33,7 +32,8 @@ Then open http://localhost:4000.
 
 ## Edit
 
-- Profile, sidebar links, theme skin: `_config.yml`
+- Profile, profile links, site description: `_config.yml`
+- Layouts: `_layouts/`; styles: `assets/css/main.scss`
 - Top navigation: `_data/navigation.yml`
 - Pages: `_pages/`
 - Publications: one file per paper in `_publications/`

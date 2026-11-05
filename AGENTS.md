@@ -1,9 +1,9 @@
 # AGENTS.md
 
 Guidance for coding agents (and humans) working on this repo: the personal
-site of Giacomo Benincasa, built with Jekyll and the Minimal Mistakes theme
-(`remote_theme: mmistakes/minimal-mistakes@4.26.2`) and published by GitHub
-Pages from `main`, root folder. See `README.md` for editing basics.
+site of Giacomo Benincasa, built with Jekyll and published by GitHub Pages
+from `main`, root folder. There is **no theme**: the layouts and stylesheet in
+this repo are the whole design. See `README.md` for editing basics.
 
 ## Ground rules
 
@@ -19,7 +19,7 @@ Pages from `main`, root folder. See `README.md` for editing basics.
 
 | What | File |
 |---|---|
-| Site settings, sidebar profile links, your name in publications (`author.publication_name`) | `_config.yml` |
+| Site settings, profile links (hero, footer, `sameAs`), your name in publications (`author.publication_name`) | `_config.yml` |
 | Top navigation | `_data/navigation.yml` |
 | CV roles and bullets, each bullet's `tags` | `_data/cv.yml` |
 | Technologies and concepts (tags and inline mentions) | `_data/technologies.yml` (field reference at the top) |
@@ -27,7 +27,22 @@ Pages from `main`, root folder. See `README.md` for editing basics.
 | Publications, one file each: `title`, `date`, `authors` (list), `et_al`, `venue`, `pubtype` (`patent`/`paper`), `paperurl` | `_publications/` |
 | Page templates | `_pages/` (`cv.md`, `publications.md` render the data above) |
 | Shared RDFa markup for a technology/concept | `_includes/concept.html` |
-| Theme CSS overrides | `assets/css/main.scss` |
+| Layouts: `default` (top bar, footer, `{% seo %}`), `home` (hero + About row), `page` (big title, optional `lead`, rows) | `_layouts/` |
+| All styles | `assets/css/main.scss` |
+
+## Design (Minimal Swiss)
+
+- One typeface (Inter Tight, from Google Fonts), black on white, one accent
+  (`$accent`, orange). Variables are at the top of `assets/css/main.scss`.
+- Pages are a stack of `<section class="row">` blocks: a small uppercase
+  `h2` label in the left column, content in the right (2fr). Below 820px the
+  grid collapses to one column. Check both widths after layout changes.
+- Page titles end in an orange full stop (`<span class="dot">.</span>`).
+- Front matter on pages: `layout` (`page` by default, `home` for About),
+  `lead` (Markdown intro under the title), `rows: true` when the page emits
+  its own rows (CV, Publications), `label` for a plain page's row label.
+- CV bullets are numbered (`ol.items`); tags render as `#Name` via CSS.
+- Keep it dependency-free: no JavaScript, no icon fonts, no theme gem.
 
 ## Semantic markup (RDFa)
 
