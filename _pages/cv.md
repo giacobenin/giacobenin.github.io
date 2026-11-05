@@ -34,7 +34,7 @@ identified by its Wikidata item where one exists.
         {%- if tech.wikidata -%}
         <span class="tech-tag" property="schema:knowsAbout foaf:topic_interest" resource="http://www.wikidata.org/entity/{{ tech.wikidata }}" typeof="schema:Thing"><span property="schema:name">{{ tag | xml_escape }}</span></span>
         {%- else -%}
-        <span class="tech-tag" property="schema:knowsAbout foaf:topic_interest" typeof="schema:Thing"><span property="schema:name">{{ tag | xml_escape }}</span></span>
+        <span class="tech-tag" property="schema:knowsAbout foaf:topic_interest" resource="{{ '/cv/' | absolute_url }}#tech-{{ tag | slugify }}" typeof="schema:Thing"><span property="schema:name">{{ tag | xml_escape }}</span></span>
         {%- endif -%}
       {%- endfor -%}
     </span>
