@@ -27,11 +27,13 @@
 "Gurobi":           { wikidata: Q5620239,   type: SoftwareApplication }
 "NumPy":            { wikidata: Q197520,    type: SoftwareApplication }
 "Dask":             { wikidata: Q65065147,  type: SoftwareApplication }   # Dask library
+"Android NDK":      { wikidata: Q110745757, type: SoftwareApplication }
 
 # Languages
 "C#":               { wikidata: Q2370,      type: ComputerLanguage }
 "C++":              { wikidata: Q2407,      type: ComputerLanguage }
 "Python":           { wikidata: Q28865,     type: ComputerLanguage }
+"Java":             { wikidata: Q251,       type: ComputerLanguage }
 
 # Concepts, formats and algorithms
 "REST":             { wikidata: Q749568 }

@@ -40,3 +40,11 @@ experience:
         tags: ["C++", "C4.5"]
       - text: "Worked on a general-purpose branch-and-bound algorithm for solving chance-constrained optimization problems (such as optimization of Value-at-Risk) and parallelized its execution, resulting in a threefold reduction of explored branch-and-bound nodes."
         tags: ["Python", "Gurobi", "NumPy", "Dask"]
+
+  - title: "Student Intern"
+    org: "University of West Florida"
+    location: "Pensacola, FL"
+    dates: "March 2008 – April 2009"
+    items:
+      - text: "Designed and developed a UDP-based, peer-to-peer, publish-subscribe messaging service to disseminate information in unreliable, high-latency networks."
+        tags: ["C++", "Java", "Android NDK"]
