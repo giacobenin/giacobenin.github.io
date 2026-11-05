@@ -35,8 +35,7 @@ engines) and FOAF. Co-author home pages come from _data/coauthors.yml.
       <span property="schema:author foaf:maker" resource="{{ '/publications/' | absolute_url }}#{{ author | slugify }}" typeof="schema:Person foaf:Person">
       {%- if author == site.author.publication_name -%}
         {%- comment -%} The site owner: bold, no visible link, but tied to this site and the profiles in _config.yml. {%- endcomment -%}
-        <strong property="schema:name foaf:name">{{ author }}</strong>
-        <link property="schema:url foaf:homepage" href="{{ '/' | absolute_url }}">
+        <strong property="schema:name foaf:name">{{ author }}</strong><link property="schema:url foaf:homepage" href="{{ '/' | absolute_url }}">
         {%- for link in site.author.links %}<link property="schema:sameAs foaf:account" href="{{ link.url }}">{% endfor -%}
       {%- elsif homepage -%}
         <a property="schema:url foaf:homepage" href="{{ homepage }}"><span property="schema:name foaf:name">{{ author }}</span></a>
