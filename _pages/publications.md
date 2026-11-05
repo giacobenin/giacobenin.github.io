@@ -14,7 +14,7 @@ Selected publications. The full list is on [Google Scholar](https://scholar.goog
 
 {% for pub in pubs %}
 - {% if pub.paperurl %}[**{{ pub.title }}**]({{ pub.paperurl }}){% else %}**{{ pub.title }}**{% endif %}  
-  {{ pub.authors }}. *{{ pub.venue }}*.
+  {{ pub.authors | remove_last: "." }}. *{{ pub.venue }}*.
 {% endfor %}
   {% endif %}
 {% endfor %}
