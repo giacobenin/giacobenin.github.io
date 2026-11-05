@@ -37,5 +37,6 @@ Then open http://localhost:4000.
 - Top navigation: `_data/navigation.yml`
 - Pages: `_pages/`
 - Publications: one file per paper in `_publications/`
-  (front matter: `title`, `date`, `authors`, `venue`, optional `paperurl`)
+  (front matter: `title`, `date`, `authors`, `venue`, `pubtype` — `patent` or
+  `paper` — and optional `paperurl`)
 - Photo: add `assets/images/profile.jpg` and uncomment `avatar` in `_config.yml`
