@@ -37,6 +37,9 @@ Then open http://localhost:4000.
 - Top navigation: `_data/navigation.yml`
 - Pages: `_pages/`
 - Publications: one file per paper in `_publications/`
-  (front matter: `title`, `date`, `authors`, `venue`, `pubtype` — `patent` or
-  `paper` — and optional `paperurl`)
+  (front matter: `title`, `date`, `authors` as a list, optional `et_al: true`,
+  `venue`, `pubtype` — `patent` or `paper` — and optional `paperurl`)
+- Co-author links: `_data/coauthors.yml` maps each author name, as written in
+  `authors`, to their home page. The Publications page marks authors up with
+  schema.org and FOAF (RDFa).
 - Photo: add `assets/images/profile.jpg` and uncomment `avatar` in `_config.yml`
