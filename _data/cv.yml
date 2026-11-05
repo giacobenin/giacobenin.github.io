@@ -34,7 +34,7 @@ experience:
     location: "Ocala, FL"
     dates: "May 2009 – October 2019"
     items:
-      - text: "Designed and implemented an information-centric networking service to reliably route messages in unreliable, temporarily partitioned, mobile networks. The middleware became a program of record."
+      - text: "Designed and implemented an information-centric networking service to reliably route messages in unreliable, temporarily partitioned, mobile networks. The service became a program of record."
         tags: ["C++", "SQLite", "Protocol Buffers"]
       - text: "Designed and implemented a recommendation service that exploits contextual information, user-defined policies, and decision trees to estimate the relevance and novelty of a document for a user. When used to prioritize and filter documents distributed over a network, experiments showed a 40–60% reduction in bandwidth utilization and a 4–6 fold latency reduction."
         tags: ["C++", "C4.5"]

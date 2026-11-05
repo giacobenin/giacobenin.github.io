@@ -127,6 +127,9 @@ a {
     }
   }
 }
+// Concepts defined on the site: definition shows on hover.
+.defined { text-decoration: underline dotted $muted; text-underline-offset: 3px; cursor: help; }
+
 .tech-tags { display: block; margin-top: 6px; }
 .tech-tag {
   display: inline-block; margin-right: 12px;
