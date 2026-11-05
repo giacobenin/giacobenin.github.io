@@ -17,6 +17,7 @@ breadcrumbs              : false
 # Sidebar profile
 author:
   name   : "Giacomo Benincasa"
+  publication_name : "G. Benincasa"   # how your name appears in _publications/ author lists (shown in bold)
   avatar : # "/assets/images/profile.jpg"  (uncomment after adding a square photo)
   bio    : "Senior Software Engineer"
   location : # optional

@@ -1,0 +1,15 @@
+---
+# Overrides the theme's main stylesheet; the front matter dashes are required.
+---
+
+@charset "utf-8";
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
+@import "minimal-mistakes";
+
+/* Site customizations */
+
+// The name already appears in the masthead, so hide it in the sidebar profile.
+.author__name {
+  display: none;
+}
