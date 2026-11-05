@@ -37,3 +37,8 @@
 "REST":             { wikidata: Q749568 }
 "Protocol Buffers": { wikidata: Q1645574 }
 "C4.5":             { wikidata: Q1022655 }    # C4.5 algorithm
+
+# Concepts mentioned in running text. `mention: true` marks up every
+# occurrence of the name in CV bullets; on other pages use
+# {% include concept.html name="..." standalone=true %}.
+"Domain-Driven Design": { wikidata: Q524367, mention: true }

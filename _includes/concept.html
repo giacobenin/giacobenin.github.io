@@ -1,0 +1,23 @@
+{%- comment -%}
+Renders one technology or concept from _data/technologies.yml as RDFa: the
+site owner schema:knowsAbout / foaf:topic_interest it.
+  name:       key in _data/technologies.yml (required)
+  tag:        true to style it as a CV tag
+  standalone: true when used outside a block that already sets the person as
+              subject (e.g. on the About page)
+{%- endcomment -%}
+{%- assign c = site.data.technologies[include.name] -%}
+{%- if c.wikidata -%}
+  {%- capture cid %}http://www.wikidata.org/entity/{{ c.wikidata }}{% endcapture -%}
+{%- else -%}
+  {%- capture cid %}{{ "/cv/" | absolute_url }}#tech-{{ include.name | slugify }}{% endcapture -%}
+{%- endif -%}
+{%- if include.standalone -%}
+<span prefix="schema: https://schema.org/ foaf: http://xmlns.com/foaf/0.1/" resource="{{ "/publications/" | absolute_url }}#{{ site.author.publication_name | slugify }}">
+{%- endif -%}
+<span{% if include.tag %} class="tech-tag"{% endif %} property="schema:knowsAbout foaf:topic_interest" resource="{{ cid }}" typeof="schema:{{ c.type | default: "Thing" }}"><span property="schema:name">{{ include.name | xml_escape }}</span>
+{%- if c.url %}<link property="schema:url schema:sameAs" href="{{ c.url }}">{% endif -%}
+{%- if c.provider %}<link property="schema:provider" href="http://www.wikidata.org/entity/{{ c.provider }}">{% endif -%}
+{%- if c.part_of %}<link property="schema:isPartOf" href="http://www.wikidata.org/entity/{{ c.part_of }}">{% endif -%}
+</span>
+{%- if include.standalone %}</span>{% endif -%}

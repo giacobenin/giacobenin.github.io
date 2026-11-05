@@ -26,21 +26,19 @@ identified by its Wikidata item where one exists.
 <em>{{ job.dates }}</em></p>
 <ul>
   {%- for item in job.items %}
-  <li>{{ item.text | xml_escape }}
+    {%- comment -%} Mark up concepts flagged `mention: true` where they appear in the text. {%- endcomment -%}
+    {%- assign text = item.text | xml_escape -%}
+    {%- for entry in site.data.technologies -%}
+      {%- if entry[1].mention and text contains entry[0] -%}
+        {%- capture concept -%}{% include concept.html name=entry[0] %}{%- endcapture -%}
+        {%- assign text = text | replace: entry[0], concept -%}
+      {%- endif -%}
+    {%- endfor %}
+  <li>{{ text }}
     {%- if item.tags %}
     <span class="tech-tags">
       {%- for tag in item.tags -%}
-        {%- assign tech = site.data.technologies[tag] -%}
-        {%- if tech.wikidata -%}
-          {%- capture tech_id %}http://www.wikidata.org/entity/{{ tech.wikidata }}{% endcapture -%}
-        {%- else -%}
-          {%- capture tech_id %}{{ '/cv/' | absolute_url }}#tech-{{ tag | slugify }}{% endcapture -%}
-        {%- endif -%}
-        <span class="tech-tag" property="schema:knowsAbout foaf:topic_interest" resource="{{ tech_id }}" typeof="schema:{{ tech.type | default: 'Thing' }}"><span property="schema:name">{{ tag | xml_escape }}</span>
-          {%- if tech.url %}<link property="schema:url schema:sameAs" href="{{ tech.url }}">{% endif -%}
-          {%- if tech.provider %}<link property="schema:provider" href="http://www.wikidata.org/entity/{{ tech.provider }}">{% endif -%}
-          {%- if tech.part_of %}<link property="schema:isPartOf" href="http://www.wikidata.org/entity/{{ tech.part_of }}">{% endif -%}
-        </span>
+        {%- include concept.html name=tag tag=true -%}
       {%- endfor -%}
     </span>
     {%- endif %}

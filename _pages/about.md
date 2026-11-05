@@ -11,7 +11,7 @@ batched forecasting workflows: orchestration with AWS Step Functions and Lambda,
 state in DynamoDB, and services written in Java and TypeScript.
 
 Before that, I worked on airline schedule management systems in C#, where I relied
-heavily on Domain-Driven Design to model a domain full of rules, exceptions, and
+heavily on {% include concept.html name="Domain-Driven Design" standalone=true %} to model a domain full of rules, exceptions, and
 changes that ripple through the schedule.
 
 I started out in networking research, designing middleware and protocols for mobile
