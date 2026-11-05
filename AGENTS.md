@@ -1,0 +1,104 @@
+# AGENTS.md
+
+Guidance for coding agents (and humans) working on this repo: the personal
+site of Giacomo Benincasa, built with Jekyll and the Minimal Mistakes theme
+(`remote_theme: mmistakes/minimal-mistakes@4.26.2`) and published by GitHub
+Pages from `main`, root folder. See `README.md` for editing basics.
+
+## Ground rules
+
+- Don't change wording (About text, CV bullets, publications, navigation)
+  beyond what was asked. Content edits are the owner's call.
+- Ask before deleting files or force-pushing.
+- Look things up instead of guessing: Wikidata IDs, URLs, author lists.
+  Check that every URL you add loads.
+- A change is done only when the GitHub Pages build for your commit has
+  succeeded and the live page shows it (see "Verify" below).
+
+## Where content lives
+
+| What | File |
+|---|---|
+| Site settings, sidebar profile links, your name in publications (`author.publication_name`) | `_config.yml` |
+| Top navigation | `_data/navigation.yml` |
+| CV roles and bullets, each bullet's `tags` | `_data/cv.yml` |
+| Technologies and concepts (tags and inline mentions) | `_data/technologies.yml` (field reference at the top) |
+| Co-author home pages, keyed by name as written in `authors` | `_data/coauthors.yml` |
+| Publications, one file each: `title`, `date`, `authors` (list), `et_al`, `venue`, `pubtype` (`patent`/`paper`), `paperurl` | `_publications/` |
+| Page templates | `_pages/` (`cv.md`, `publications.md` render the data above) |
+| Shared RDFa markup for a technology/concept | `_includes/concept.html` |
+| Theme CSS overrides | `assets/css/main.scss` |
+
+## Semantic markup (RDFa)
+
+The CV, Publications and About pages carry RDFa using schema.org (read by
+search engines) and FOAF, side by side on the same elements. Keep them in sync.
+
+- **Stable identifiers.** The same thing must have the same IRI everywhere:
+  - The site owner: `{{ '/publications/' | absolute_url }}#g-benincasa`
+    (derived from `author.publication_name`), on every page.
+  - Co-authors: `…/publications/#<name | slugify>`. Names must be spelled
+    identically across `_publications/` or they become different people.
+  - Technologies/concepts: `http://www.wikidata.org/entity/<QID>` if a
+    Wikidata item exists; otherwise `…/cv/#tech-<name | slugify>` plus the
+    official docs page as `schema:url`/`schema:sameAs`.
+- **Identity sources, in order:** Wikidata item → official product/docs page.
+  AWS services also get `provider: Q456157` (Amazon Web Services).
+- **One renderer.** Produce technology/concept markup only through
+  `_includes/concept.html` (`tag=true` for CV tags, `standalone=true` outside
+  a block that already has the person as subject, e.g. the About page).
+  Concepts with `mention: true` are marked up automatically wherever their
+  exact name appears in a CV bullet.
+- IRIs use `site.url` (`https://gbenin.casa`) on purpose, so they stay stable
+  when the custom domain is restored. Don't switch them to github.io.
+
+## Build constraints
+
+- GitHub Pages builds with the `github-pages` gem: **Jekyll 3.10, Liquid 4**.
+  - Liquid 5 filters (e.g. `remove_last`) don't exist and fail **silently**.
+  - `{% include %}` parameters must be plain variables or literals, not
+    `entry[0]`; assign to a variable first. This fails the build.
+  - In `_pages/*.md`, write raw HTML (not Markdown) inside RDFa blocks;
+    kramdown leaves block HTML alone.
+- Root `.md` files are rendered as pages by `jekyll-optional-front-matter`,
+  so non-site docs (README, AGENTS.md, CLAUDE.md) must be listed in
+  `exclude` in `_config.yml`.
+- Local builds need **Ruby 3.3** (`brew install ruby@3.3`, then put
+  `/opt/homebrew/opt/ruby@3.3/bin` first on PATH). Ruby 4.x can't resolve
+  `github-pages` 232, and macOS system Ruby 2.6 is too old. Install gems
+  into `vendor/bundle` (git-ignored); don't commit `Gemfile.lock`.
+
+## Verify
+
+After pushing to `main`:
+
+1. Wait for the `pages-build-deployment` run for your commit:
+   `gh run list -R giacobenin/giacobenin.github.io -L 1`. On failure, read
+   `gh run view <id> --log-failed`; Liquid errors show up there.
+2. Fetch the live page (https://giacobenin.github.io/...) and check the
+   change.
+3. For markup changes, extract the RDF (e.g. with `pyRdfa3` + `rdflib` in a
+   throwaway virtualenv) and confirm identities, counts and links. Don't
+   rely on reading the HTML.
+
+## Git and hosting
+
+- Push to `main` over HTTPS; there is no SSH key on the owner's machine. If
+  plain `git push` isn't authenticated, use
+  `git -c credential.helper='!gh auth git-credential' push origin main`.
+- Commit messages: imperative subject, short body saying why.
+
+## Current state: custom domain is off
+
+`gbenin.casa` DNS (registrar: GoDaddy) doesn't point to GitHub Pages yet, so
+the custom domain is disabled and `CNAME` was removed (commit `898211a`). The
+site is served at https://giacobenin.github.io.
+
+To restore it once `dig gbenin.casa +short` shows only 185.199.108.153,
+185.199.109.153, 185.199.110.153 and 185.199.111.153:
+
+1. Re-add `CNAME` containing `gbenin.casa`, commit and push.
+2. Set the domain: `gh api -X PUT repos/giacobenin/giacobenin.github.io/pages -f cname=gbenin.casa -f 'source[branch]=main' -f 'source[path]=/'`.
+3. Once GitHub has issued the certificate, enable HTTPS:
+   `gh api -X PUT repos/giacobenin/giacobenin.github.io/pages -F https_enforced=true`.
+4. Delete this section.
