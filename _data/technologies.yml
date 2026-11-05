@@ -45,4 +45,4 @@
 # occurrence of the name in CV bullets; on other pages use
 # {% include concept.html name="..." standalone=true %}.
 "Domain-Driven Design": { wikidata: Q524367, mention: true }
-"program of record": { type: DefinedTerm, mention: true, description: "A formally approved and funded government acquisition program, typically within the Department of Defense (DoD), that provides for the development, procurement, or sustainment of a specific capability, weapon system, or service." }
+"program of record": { type: DefinedTerm, mention: true, url: "https://www.waru.edu/acquipedia-article/program-record-por", description: "A formally approved and funded government acquisition program, typically within the Department of Defense (DoD), that provides for the development, procurement, or sustainment of a specific capability, weapon system, or service." }
