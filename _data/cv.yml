@@ -1,0 +1,42 @@
+# Professional experience shown on the CV page (_pages/cv.md).
+# `tags` must match keys in _data/technologies.yml.
+experience:
+  - title: "Senior Software Engineer"
+    org: "Amazon"
+    note: "Supply Chain Optimization Technologies, Forecasting"
+    location: "New York, NY"
+    dates: "December 2020 – present"
+    items:
+      - text: "Architected and deployed cloud-native solutions, transforming legacy EC2-based services with spiky traffic to serverless platforms, resulting in over 90% cost reduction and 80% reliability improvement."
+        tags: ["Lambda", "API Gateway", "Spark", "Glue"]
+      - text: "Led an org-wide, multi-million-dollar initiative to replace a high-latency real-time system with a high-scale batch processing workflow, reducing system latency by 20% and improving system auditability."
+        tags: ["Lambda", "Step Functions", "EventBridge", "Athena"]
+      - text: "Co-led a cross-functional MLOps initiative to standardize and automate the ML lifecycle, architecting a CI/CD deployment pipeline that accelerated production timelines by several weeks per model launch."
+        tags: ["Step Functions", "DynamoDB Streams"]
+      - text: "Spearheaded organizational AI adoption by implementing internal Model Context Protocol servers and engineering sophisticated context/prompt logic to automate common operational tasks; packaged and distributed agent configurations to lower the barrier of entry across teams."
+        tags: ["Kiro CLI", "Kendra"]
+      - text: "Coached junior/mid staff and interns through full-cycle project development, from scope definition to delivery, while fostering professional growth that led to 4 successful promotions/full-time hires."
+
+  - title: "Senior Software Engineer"
+    org: "Optym / Amadeus"
+    note: "Amadeus acquired Optym's Airline Department"
+    location: "Gainesville, FL"
+    dates: "December 2018 – December 2020"
+    items:
+      - text: "Designed microservice-based enterprise applications using Domain-Driven Design."
+      - text: "Lead backend engineer for a distributed version-control system for airline schedules. Responsible for service API design, persistence and messaging infrastructure, and critical features such as conflict detection and resolution to support multi-user editing."
+        tags: ["C#", "REST", "ActiveMQ", "MongoDB"]
+      - text: "Developed proofs of concept that informed and influenced critical infrastructural decisions."
+        tags: ["ActiveMQ", "Neo4j"]
+
+  - title: "R&D Software Engineer"
+    org: "Florida Institute for Human & Machine Cognition"
+    location: "Ocala, FL"
+    dates: "May 2009 – October 2019"
+    items:
+      - text: "Designed and implemented an information-centric networking service to reliably route messages in unreliable, temporarily partitioned, mobile networks."
+        tags: ["C++", "SQLite", "Protocol Buffers"]
+      - text: "Designed and implemented a recommendation service that exploits contextual information, user-defined policies, and decision trees to estimate the relevance and novelty of a document for a user. When used to prioritize and filter documents distributed over a network, experiments showed a 40–60% reduction in bandwidth utilization and a 4–6 fold latency reduction."
+        tags: ["C++", "C4.5"]
+      - text: "Worked on a general-purpose branch-and-bound algorithm for solving chance-constrained optimization problems (such as optimization of Value-at-Risk) and parallelized its execution, resulting in a threefold reduction of explored branch-and-bound nodes."
+        tags: ["Python", "Gurobi", "NumPy", "Dask"]

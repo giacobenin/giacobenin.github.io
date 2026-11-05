@@ -1,0 +1,26 @@
+# Technologies used as tags on the CV page, keyed by the tag text used in
+# _data/cv.yml. `wikidata` is the item ID (https://www.wikidata.org/wiki/<ID>);
+# leave it out when there is no matching Wikidata item. The tag still shows.
+"Lambda":           { wikidata: Q21462856 }   # AWS Lambda
+"API Gateway":      {}                        # no Wikidata item
+"Spark":            { wikidata: Q7573619 }    # Apache Spark
+"Glue":             { wikidata: Q104861519 }  # AWS Glue
+"Step Functions":   {}                        # no Wikidata item
+"EventBridge":      {}                        # no Wikidata item
+"Athena":           { wikidata: Q65203360 }   # Amazon Athena
+"DynamoDB Streams": {}                        # no Wikidata item (feature of DynamoDB, Q15731832)
+"Kiro CLI":         {}                        # no Wikidata item
+"Kendra":           {}                        # no Wikidata item
+"C#":               { wikidata: Q2370 }
+"REST":             { wikidata: Q749568 }
+"ActiveMQ":         { wikidata: Q773135 }     # Apache ActiveMQ
+"MongoDB":          { wikidata: Q1165204 }
+"Neo4j":            { wikidata: Q1628290 }
+"C++":              { wikidata: Q2407 }
+"SQLite":           { wikidata: Q319417 }
+"Protocol Buffers": { wikidata: Q1645574 }
+"C4.5":             { wikidata: Q1022655 }    # C4.5 algorithm
+"Python":           { wikidata: Q28865 }
+"Gurobi":           { wikidata: Q5620239 }
+"NumPy":            { wikidata: Q197520 }
+"Dask":             { wikidata: Q65065147 }   # Dask library
