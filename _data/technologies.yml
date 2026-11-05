@@ -46,3 +46,14 @@
 # {% include concept.html name="..." standalone=true %}.
 "Domain-Driven Design": { wikidata: Q524367, mention: true }
 "program of record": { type: DefinedTerm, mention: true, url: "https://www.waru.edu/acquipedia-article/program-record-por", description: "A formally approved and funded government acquisition program, typically within the Department of Defense (DoD), that provides for the development, procurement, or sustainment of a specific capability, weapon system, or service." }
+
+# Concepts linked on the About page (via the include, not CV tags)
+"distributed systems":   { wikidata: Q180634 }      # distributed computing
+"platform engineering":  { wikidata: Q130239811 }
+"DynamoDB":              { wikidata: Q15731832, type: SoftwareApplication, provider: Q456157 }   # Amazon DynamoDB
+"TypeScript":            { wikidata: Q978185,   type: ComputerLanguage }
+"middleware":            { wikidata: Q146768 }
+"mobile ad hoc network": { wikidata: Q577877 }
+"Internet of Things":    { wikidata: Q251212 }
+"peer-to-peer":          { wikidata: Q161410 }
+"reliable multicast":    { wikidata: Q7310997 }
