@@ -57,7 +57,9 @@ search engines) and FOAF, side by side on the same elements. Keep them in sync.
   - Technologies/concepts: `http://www.wikidata.org/entity/<QID>` if a
     Wikidata item exists; otherwise `…/cv/#tech-<name | slugify>` plus the
     official docs page as `schema:url`/`schema:sameAs`.
-- **Identity sources, in order:** Wikidata item → official product/docs page.
+- **Identity sources, in order:** Wikidata item → official product/docs page
+  → a term defined on the site (`type: DefinedTerm` plus `description`, shown
+  on hover via `.defined`). Never link a page you couldn't load.
   AWS services also get `provider: Q456157` (Amazon Web Services).
 - **One renderer.** Produce technology/concept markup only through
   `_includes/concept.html` (`tag=true` for CV tags, `standalone=true` outside
