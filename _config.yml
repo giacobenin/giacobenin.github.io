@@ -1,0 +1,69 @@
+# Site settings
+title                    : "Giacomo Benincasa"
+title_separator          : "-"
+name                     : "Giacomo Benincasa"
+description              : "Senior software engineer: distributed systems, cloud platforms, networking research."
+url                      : "https://gbenin.casa"
+baseurl                  : ""
+repository               : "giacobenin/giacobenin.github.io"
+locale                   : "en-US"
+
+# Theme: Minimal Mistakes, pinned to a release so upgrades are deliberate
+remote_theme             : "mmistakes/minimal-mistakes@4.26.2"
+minimal_mistakes_skin    : "default"   # also: air, aqua, contrast, dark, dirt, mint, neon, plum, sunrise
+search                   : false
+breadcrumbs              : false
+
+# Sidebar profile
+author:
+  name   : "Giacomo Benincasa"
+  avatar : # "/assets/images/profile.jpg"  (uncomment after adding a square photo)
+  bio    : "Senior Software Engineer"
+  location : # optional
+  links:
+    - label: "Google Scholar"
+      icon: "fas fa-fw fa-graduation-cap"
+      url: "https://scholar.google.com/citations?user=fa77M2IAAAAJ"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/gbenincasa/"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/giacobenin"
+    - label: "ORCID"
+      icon: "fab fa-fw fa-orcid"
+      url: "https://orcid.org/0000-0002-6357-9043"
+
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/giacobenin"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/gbenincasa/"
+
+# Build settings
+markdown  : kramdown
+permalink : /:categories/:title/
+include   : ["_pages"]
+exclude   : ["Gemfile", "Gemfile.lock", "README.md", "vendor", ".bundle"]
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-include-cache
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Publications are listed on one page, not rendered individually
+collections:
+  publications:
+    output: false
+
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
