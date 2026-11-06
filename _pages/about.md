@@ -17,7 +17,7 @@ changes that ripple through the schedule.
 
 I started out in networking research, designing {% include concept.html name="middleware" standalone=true %} and protocols for
 {% include concept.html name="mobile ad hoc network" text="mobile ad hoc" standalone=true %} and {% include concept.html name="Internet of Things" text="IoT" standalone=true %} networks: {% include concept.html name="peer-to-peer" standalone=true %} data dissemination, {% include concept.html name="reliable multicast" standalone=true %},
-opportunistic sensing, and communications for {% include concept.html name="tactical edge network" text="tactical edge" standalone=true %} environments, mostly in
+{% include concept.html name="opportunistic sensing" standalone=true %}, and communications for {% include concept.html name="tactical edge network" text="tactical edge" standalone=true %} environments, mostly in
 {% include concept.html name="C++" standalone=true %} and {% include concept.html name="Java" standalone=true %}. That work appeared at venues including {% include venue.html id="milcom" text="IEEE MILCOM" %}, {% include venue.html id="chants" text="CHANTS@MobiCom" %},
 and {% include venue.html id="wf-iot" text="IEEE WF-IoT" %}; see [Publications](/publications/).
 
