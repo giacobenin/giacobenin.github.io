@@ -1,8 +1,14 @@
-# Employers referenced from `employers` in _data/cv.yml, rendered on the CV as
-# schema:Organization (identified by Wikidata, with the official site as
-# schema:url / schema:sameAs).
+# Employers (`employers` in _data/cv.yml) and schools (`schools` in its
+# `education` list), rendered on the CV as schema:Organization, or the
+# schema.org class in `type`. Identified by Wikidata, with the official site
+# as schema:url / schema:sameAs.
 "Amazon":  { name: "Amazon",  wikidata: Q3884,     url: "https://www.aboutamazon.com/" }
 "Optym":   { name: "Optym",   wikidata: Q30282954, url: "https://www.optym.com/" }
 "Amadeus": { name: "Amadeus IT Group", wikidata: Q696061, url: "https://amadeus.com/en" }
 "IHMC":    { name: "Florida Institute for Human & Machine Cognition", wikidata: Q5461457, url: "https://www.ihmc.us/" }
-"UWF":     { name: "University of West Florida", wikidata: Q659255, url: "https://uwf.edu/" }
+"UWF":     { name: "University of West Florida", wikidata: Q659255, url: "https://uwf.edu/", type: CollegeOrUniversity }
+
+# Schools
+"UF":        { name: "University of Florida",                    wikidata: Q501758,  url: "https://www.ufl.edu/",        type: CollegeOrUniversity }
+"UNIMORE":   { name: "University of Modena and Reggio Emilia",   wikidata: Q1243705, url: "https://www.unimore.it/",     type: CollegeOrUniversity }
+"Sheffield": { name: "University of Sheffield",                  wikidata: Q823917,  url: "https://www.sheffield.ac.uk/", type: CollegeOrUniversity }

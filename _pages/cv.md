@@ -36,7 +36,7 @@ identified by its Wikidata item where one exists.
     {%- if job.end %}<meta property="schema:endDate" content="{{ job.end }}">{% endif -%}
     {%- for key in job.employers -%}
       {%- assign org = site.data.organizations[key] -%}
-      <span property="schema:worksFor" resource="http://www.wikidata.org/entity/{{ org.wikidata }}" typeof="schema:Organization"><meta property="schema:name" content="{{ org.name | xml_escape }}"><link property="schema:url schema:sameAs" href="{{ org.url }}"></span>
+      <span property="schema:worksFor" resource="http://www.wikidata.org/entity/{{ org.wikidata }}" typeof="schema:{{ org.type | default: 'Organization' }}"><meta property="schema:name" content="{{ org.name | xml_escape }}"><link property="schema:url schema:sameAs" href="{{ org.url }}"></span>
     {%- endfor -%}
     {%- comment -%} Where the job was. schema.org has no per-role location, so this uses workLocation on the role, as is common practice. {%- endcomment -%}
     {%- assign place = site.data.places[job.place] -%}
@@ -69,6 +69,38 @@ identified by its Wikidata item where one exists.
     </div></li>
   {%- endfor %}
   </ol>
+</div>
+{%- endfor %}
+</div>
+</section>
+
+{%- comment -%}
+Education: person schema:alumniOf each school; a degree is also
+schema:hasCredential an EducationalOccupationalCredential recognizedBy the
+school(s). Schools come from _data/organizations.yml.
+{%- endcomment %}
+<section class="row">
+<h2 id="education">Education</h2>
+<div>
+{%- for ed in site.data.cv.education %}
+<div class="job">
+  <div class="job-head">
+    {%- for key in ed.schools -%}
+      {%- assign school = site.data.organizations[key] -%}
+      <span property="schema:alumniOf" resource="http://www.wikidata.org/entity/{{ school.wikidata }}" typeof="schema:{{ school.type | default: 'Organization' }}"><meta property="schema:name" content="{{ school.name | xml_escape }}"><link property="schema:url schema:sameAs" href="{{ school.url }}"></span>
+    {%- endfor %}
+    {%- if ed.degree %}
+    <h3 property="schema:hasCredential" typeof="schema:EducationalOccupationalCredential"><span property="schema:name">{{ ed.title | xml_escape }}</span><meta property="schema:credentialCategory" content="degree">
+      {%- for key in ed.schools %}<link property="schema:recognizedBy" href="http://www.wikidata.org/entity/{{ site.data.organizations[key].wikidata }}">{% endfor -%}
+    </h3>
+    {%- else %}
+    <h3>{{ ed.title | xml_escape }}</h3>
+    {%- endif %}
+    <span class="where">
+      {%- for key in ed.schools -%}{{ site.data.organizations[key].name | xml_escape }}{% unless forloop.last %} · {% endunless %}{%- endfor -%}
+      {%- if ed.note %} ({{ ed.note | xml_escape }}){% endif -%}
+    </span>
+  </div>
 </div>
 {%- endfor %}
 </div>

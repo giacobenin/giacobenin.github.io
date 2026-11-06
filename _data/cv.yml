@@ -65,3 +65,16 @@ experience:
     items:
       - text: "Designed and developed a UDP-based, peer-to-peer, publish-subscribe messaging service to disseminate information in unreliable, high-latency networks."
         tags: ["C++", "Java", "Android NDK"]
+
+# Education, most recent first. `schools` are keys in _data/organizations.yml;
+# `degree` is omitted for study that didn't lead to a degree.
+education:
+  - title: "M.S. in Computer Engineering"
+    degree: true
+    schools: ["UF", "UNIMORE"]
+    note: "Dual degree"
+  - title: "Exchange student"
+    schools: ["Sheffield"]
+  - title: "B.S. in Computer Engineering"
+    degree: true
+    schools: ["UNIMORE"]
