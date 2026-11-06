@@ -14,7 +14,8 @@ state in {% include concept.html name="DynamoDB" standalone=true %}, and service
 
 Before that, I worked on airline schedule management systems in {% include concept.html name="C#" standalone=true %}, where I relied
 heavily on {% include concept.html name="Domain-Driven Design" standalone=true %} to model a domain full of rules, exceptions, and
-changes that ripple through the schedule. I was instrumental in the launch of
+changes that ripple through the schedule. I worked on backend systems in support of
+the {% include concept.html name="Amadeus Sky Suite" standalone=true %}; in particular, I was instrumental in the launch of
 {% include concept.html name="Amadeus SkyWORKS" link=true standalone=true %}.
 
 I started out in networking research, designing {% include concept.html name="middleware" standalone=true %} and protocols for
