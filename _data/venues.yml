@@ -1,0 +1,15 @@
+# Conference/workshop series mentioned on the site, keyed by a short ID used in
+# {% include venue.html id="..." text="..." %}. Rendered as schema:EventSeries.
+#   name:      full name (schema:name)
+#   wikidata:  Wikidata item ID of the series
+#   held_with: Wikidata ID of the event series it is co-located with (schema:superEvent)
+milcom:
+  name: "IEEE Military Communications Conference"
+  wikidata: Q105695655
+chants:
+  name: "ACM Workshop on Challenged Networks"
+  wikidata: Q105698108
+  held_with: Q4118598   # ACM MobiCom (International Conference on Mobile Computing and Networking)
+wf-iot:
+  name: "IEEE World Forum on Internet of Things"
+  wikidata: Q105699075
