@@ -67,14 +67,14 @@ experience:
         tags: ["C++", "Java", "Android NDK"]
 
 # Education, most recent first. `schools` are keys in _data/organizations.yml;
-# `degree` is omitted for study that didn't lead to a degree.
+# `degree` is omitted for study that didn't lead to a degree; `exchange` is a
+# school where part of the degree was completed.
 education:
   - title: "M.S. in Computer Engineering"
     degree: true
     schools: ["UF", "UNIMORE"]
     note: "Dual degree"
-  - title: "Exchange student"
-    schools: ["Sheffield"]
+    exchange: "Sheffield-CS"   # study abroad that counted towards this degree
   - title: "B.S. in Computer Engineering"
     degree: true
     schools: ["UNIMORE"]

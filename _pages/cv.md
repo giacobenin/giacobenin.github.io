@@ -89,6 +89,9 @@ school(s). Schools come from _data/organizations.yml.
       {%- assign school = site.data.organizations[key] -%}
       <span property="schema:alumniOf" resource="http://www.wikidata.org/entity/{{ school.wikidata }}" typeof="schema:{{ school.type | default: 'Organization' }}"><meta property="schema:name" content="{{ school.name | xml_escape }}"><link property="schema:url schema:sameAs" href="{{ school.url }}"></span>
     {%- endfor %}
+    {%- if ed.exchange %}{% assign xs = site.data.organizations[ed.exchange] %}
+      <span property="schema:alumniOf" resource="http://www.wikidata.org/entity/{{ xs.wikidata }}" typeof="schema:{{ xs.type | default: 'Organization' }}"><meta property="schema:name" content="{{ xs.name | xml_escape }}"><link property="schema:url schema:sameAs" href="{{ xs.url }}">{% if xs.parent %}<link property="schema:parentOrganization" href="http://www.wikidata.org/entity/{{ xs.parent }}">{% endif %}</span>
+    {%- endif %}
     {%- if ed.degree %}
     <h3 property="schema:hasCredential" typeof="schema:EducationalOccupationalCredential"><span property="schema:name">{{ ed.title | xml_escape }}</span><meta property="schema:credentialCategory" content="degree">
       {%- for key in ed.schools %}<link property="schema:recognizedBy" href="http://www.wikidata.org/entity/{{ site.data.organizations[key].wikidata }}">{% endfor -%}
@@ -100,6 +103,9 @@ school(s). Schools come from _data/organizations.yml.
       {%- for key in ed.schools -%}{{ site.data.organizations[key].name | xml_escape }}{% unless forloop.last %} · {% endunless %}{%- endfor -%}
       {%- if ed.note %} ({{ ed.note | xml_escape }}){% endif -%}
     </span>
+    {%- if ed.exchange %}
+    <span class="where">Includes an exchange at the {{ site.data.organizations[ed.exchange].name | xml_escape }}</span>
+    {%- endif %}
   </div>
 </div>
 {%- endfor %}
