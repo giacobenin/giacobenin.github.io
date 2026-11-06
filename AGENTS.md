@@ -24,6 +24,7 @@ this repo are the whole design. See `README.md` for editing basics.
 | CV roles and bullets, each bullet's `tags` | `_data/cv.yml` |
 | Technologies and concepts (tags and inline mentions) | `_data/technologies.yml` (field reference at the top) |
 | Co-author home pages, keyed by name as written in `authors` | `_data/coauthors.yml` |
+| Conference/workshop series (venues), rendered by `_includes/venue.html` | `_data/venues.yml` |
 | Publications, one file each: `title`, `date`, `authors` (list), `et_al`, `venue`, `pubtype` (`patent`/`paper`), `paperurl` | `_publications/` |
 | Page templates | `_pages/` (`cv.md`, `publications.md` render the data above) |
 | Shared RDFa markup for a technology/concept | `_includes/concept.html` |
@@ -66,6 +67,8 @@ search engines) and FOAF, side by side on the same elements. Keep them in sync.
   a block that already has the person as subject, e.g. the About page).
   Concepts with `mention: true` are marked up automatically wherever their
   exact name appears in a CV bullet.
+- **Venues** are not skills: they render as `schema:EventSeries` that the page
+  `schema:mentions` (via `_includes/venue.html`), never as `knowsAbout`.
 - IRIs use `site.url` (`https://gbenin.casa`) on purpose, so they stay stable
   when the custom domain is restored. Don't switch them to github.io.
 
