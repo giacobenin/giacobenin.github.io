@@ -57,3 +57,4 @@
 "Internet of Things":    { wikidata: Q251212 }
 "peer-to-peer":          { wikidata: Q161410 }
 "reliable multicast":    { wikidata: Q7310997 }
+"tactical edge network": { type: DefinedTerm, description: "Resilient, decentralized communication infrastructures designed to connect warfighters, sensors, and command centers in degraded, intermittent, or disconnected environments where cloud access is unavailable or contested." }
