@@ -37,7 +37,12 @@ identified by its Wikidata item where one exists.
     {%- for key in job.employers -%}
       {%- assign org = site.data.organizations[key] -%}
       <span property="schema:worksFor" resource="http://www.wikidata.org/entity/{{ org.wikidata }}" typeof="schema:Organization"><meta property="schema:name" content="{{ org.name | xml_escape }}"><link property="schema:url schema:sameAs" href="{{ org.url }}"></span>
-    {%- endfor %}
+    {%- endfor -%}
+    {%- comment -%} Where the job was. schema.org has no per-role location, so this uses workLocation on the role, as is common practice. {%- endcomment -%}
+    {%- assign place = site.data.places[job.place] -%}
+    {%- if place %}
+      <span property="schema:workLocation" resource="http://www.wikidata.org/entity/{{ place.wikidata }}" typeof="schema:City"><meta property="schema:name" content="{{ place.name | xml_escape }}"><link property="schema:sameAs" href="https://sws.geonames.org/{{ place.geonames }}/"></span>
+    {%- endif %}
     <h3>{{ job.title | xml_escape }}, {{ job.org | xml_escape }}</h3>
     <span class="when">{{ job.dates }}</span>
     <span class="where">{% if job.note %}{{ job.note | xml_escape }} · {% endif %}{{ job.location | xml_escape }}</span>

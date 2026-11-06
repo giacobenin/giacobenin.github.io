@@ -1,0 +1,7 @@
+# Work locations referenced from `place` in _data/cv.yml, rendered on the CV as
+# schema:City (identified by Wikidata, with the GeoNames feature as sameAs).
+# GeoNames IDs come from each Wikidata item's GeoNames property (P1566).
+"New York":   { name: "New York City",        wikidata: Q60,     geonames: 5128581 }
+"Gainesville": { name: "Gainesville, Florida", wikidata: Q487999, geonames: 4156404 }
+"Ocala":      { name: "Ocala, Florida",        wikidata: Q918195, geonames: 4166673 }
+"Pensacola":  { name: "Pensacola, Florida",    wikidata: Q486306, geonames: 4168228 }

@@ -1,11 +1,13 @@
 # Professional experience shown on the CV page (_pages/cv.md).
 # `tags` must match keys in _data/technologies.yml; `employers` must match
-# keys in _data/organizations.yml. `start`/`end` are YYYY-MM (omit `end` if current).
+# keys in _data/organizations.yml; `place` a key in _data/places.yml.
+# `start`/`end` are YYYY-MM (omit `end` if current).
 experience:
   - title: "Senior Software Engineer"
     org: "Amazon"
     note: "Supply Chain Optimization Technologies, Forecasting"
     location: "New York, NY"
+    place: "New York"   # key in _data/places.yml
     dates: "December 2020 – present"
     employers: ["Amazon"]   # keys in _data/organizations.yml
     start: "2020-12"
@@ -24,6 +26,7 @@ experience:
     org: "Optym / Amadeus"
     note: "Amadeus acquired Optym's Airline Department"
     location: "Gainesville, FL"
+    place: "Gainesville"   # key in _data/places.yml
     dates: "December 2018 – December 2020"
     employers: ["Optym", "Amadeus"]   # keys in _data/organizations.yml
     start: "2018-12"
@@ -38,6 +41,7 @@ experience:
   - title: "R&D Software Engineer"
     org: "Florida Institute for Human & Machine Cognition"
     location: "Ocala, FL"
+    place: "Ocala"   # key in _data/places.yml
     dates: "May 2009 – October 2019"
     employers: ["IHMC"]   # keys in _data/organizations.yml
     start: "2009-05"
@@ -53,6 +57,7 @@ experience:
   - title: "Student Intern"
     org: "University of West Florida"
     location: "Pensacola, FL"
+    place: "Pensacola"   # key in _data/places.yml
     dates: "March 2008 – April 2009"
     employers: ["UWF"]   # keys in _data/organizations.yml
     start: "2008-03"
