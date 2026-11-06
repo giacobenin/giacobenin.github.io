@@ -8,9 +8,10 @@ description: "Giacomo Benincasa is a senior software engineer building distribut
 I'm a senior software engineer who builds {% include concept.html name="distributed systems" standalone=true %} and the platforms
 that run them. <!-- TODO: add current employer/team if you want it public -->
 
-Most recently I've worked in {% include concept.html name="platform engineering" standalone=true %}, building the infrastructure behind
-batched forecasting workflows: orchestration with {% include concept.html name="Step Functions" text="AWS Step Functions" standalone=true %} and {% include concept.html name="Lambda" standalone=true %},
-state in {% include concept.html name="DynamoDB" standalone=true %}, and services written in {% include concept.html name="Java" standalone=true %} and {% include concept.html name="TypeScript" standalone=true %}.
+Most recently, at Amazon, I've worked in {% include concept.html name="platform engineering" standalone=true %}, building the
+infrastructure behind batched forecasting workflows with {% include concept.html name="serverless computing" text="serverless technologies" standalone=true %},
+primarily {% include concept.html name="Step Functions" text="AWS Step Functions" standalone=true %}, {% include concept.html name="Lambda" standalone=true %} and {% include concept.html name="Glue" standalone=true %}, with state in
+{% include concept.html name="DynamoDB" standalone=true %}. The work spans both {% include concept.html name="software development" standalone=true %} and {% include concept.html name="DevOps" standalone=true %}.
 
 Before that, I built backend systems for the {% include concept.html name="Amadeus Sky Suite" standalone=true %} of airline
 schedule management products, and was instrumental in the launch of
