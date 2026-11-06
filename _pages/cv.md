@@ -24,7 +24,19 @@ identified by its Wikidata item where one exists.
 <div>
 {%- for job in site.data.cv.experience %}
 <div class="job">
-  <div class="job-head">
+  {%- comment -%}
+  Employment as a schema.org Role: person -worksFor-> EmployeeRole (roleName,
+  startDate, endDate) -worksFor-> Organization. Only on the header, so the
+  bullets' knowsAbout tags stay attached to the person.
+  {%- endcomment %}
+  <div class="job-head" property="schema:worksFor" typeof="schema:EmployeeRole">
+    <meta property="schema:roleName" content="{{ job.title | xml_escape }}">
+    {%- if job.start %}<meta property="schema:startDate" content="{{ job.start }}">{% endif -%}
+    {%- if job.end %}<meta property="schema:endDate" content="{{ job.end }}">{% endif -%}
+    {%- for key in job.employers -%}
+      {%- assign org = site.data.organizations[key] -%}
+      <span property="schema:worksFor" resource="http://www.wikidata.org/entity/{{ org.wikidata }}" typeof="schema:Organization"><meta property="schema:name" content="{{ org.name | xml_escape }}"><link property="schema:url schema:sameAs" href="{{ org.url }}"></span>
+    {%- endfor %}
     <h3>{{ job.title | xml_escape }}, {{ job.org | xml_escape }}</h3>
     <span class="when">{{ job.dates }}</span>
     <span class="where">{% if job.note %}{{ job.note | xml_escape }} · {% endif %}{{ job.location | xml_escape }}</span>

@@ -114,6 +114,7 @@ a {
   h3 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
   .when { font-size: 14px; color: $muted; font-variant-numeric: tabular-nums; padding-top: 5px; white-space: nowrap; }
   .where { grid-column: 1 / -1; color: $muted; font-size: 15px; }
+  > span[typeof] { display: none; }   // metadata-only (employer RDFa), keep out of the grid
 }
 .items {
   list-style: none; counter-reset: item; padding: 0; margin: 18px 0 0;

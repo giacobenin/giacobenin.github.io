@@ -1,11 +1,14 @@
 # Professional experience shown on the CV page (_pages/cv.md).
-# `tags` must match keys in _data/technologies.yml.
+# `tags` must match keys in _data/technologies.yml; `employers` must match
+# keys in _data/organizations.yml. `start`/`end` are YYYY-MM (omit `end` if current).
 experience:
   - title: "Senior Software Engineer"
     org: "Amazon"
     note: "Supply Chain Optimization Technologies, Forecasting"
     location: "New York, NY"
     dates: "December 2020 – present"
+    employers: ["Amazon"]   # keys in _data/organizations.yml
+    start: "2020-12"
     items:
       - text: "Architected and deployed cloud-native solutions, transforming legacy EC2-based services with spiky traffic to serverless platforms, resulting in over 90% cost reduction and 80% reliability improvement."
         tags: ["Lambda", "API Gateway", "Spark", "Glue"]
@@ -22,6 +25,9 @@ experience:
     note: "Amadeus acquired Optym's Airline Department"
     location: "Gainesville, FL"
     dates: "December 2018 – December 2020"
+    employers: ["Optym", "Amadeus"]   # keys in _data/organizations.yml
+    start: "2018-12"
+    end: "2020-12"
     items:
       - text: "Designed microservice-based enterprise applications using Domain-Driven Design."
       - text: "Lead backend engineer for a distributed version-control system for airline schedules. Responsible for service API design, persistence and messaging infrastructure, and critical features such as conflict detection and resolution to support multi-user editing."
@@ -33,6 +39,9 @@ experience:
     org: "Florida Institute for Human & Machine Cognition"
     location: "Ocala, FL"
     dates: "May 2009 – October 2019"
+    employers: ["IHMC"]   # keys in _data/organizations.yml
+    start: "2009-05"
+    end: "2019-10"
     items:
       - text: "Designed and implemented an information-centric networking service to reliably route messages in unreliable, temporarily partitioned, mobile networks. The service became a program of record."
         tags: ["C++", "SQLite", "Protocol Buffers"]
@@ -45,6 +54,9 @@ experience:
     org: "University of West Florida"
     location: "Pensacola, FL"
     dates: "March 2008 – April 2009"
+    employers: ["UWF"]   # keys in _data/organizations.yml
+    start: "2008-03"
+    end: "2009-04"
     items:
       - text: "Designed and developed a UDP-based, peer-to-peer, publish-subscribe messaging service to disseminate information in unreliable, high-latency networks."
         tags: ["C++", "Java", "Android NDK"]
