@@ -22,7 +22,8 @@ this repo are the whole design. See `README.md` for editing basics.
 | Site settings, profile links (hero, footer, `sameAs`), your name in publications (`author.publication_name`) | `_config.yml` |
 | Top navigation | `_data/navigation.yml` |
 | CV roles and bullets, each bullet's `tags`; per job `employers`, `place`, `start`, `end` (YYYY-MM) | `_data/cv.yml` |
-| Employers (name, Wikidata ID, official site) | `_data/organizations.yml` |
+| Employers and schools (name, Wikidata ID, official site, optional schema.org `type`) | `_data/organizations.yml` |
+| Education (title, `degree: true`, `schools`, `note`), shown as the CV's Education row | `education` in `_data/cv.yml` |
 | Work locations (name, Wikidata ID, GeoNames ID), referenced by `place` in `cv.yml` | `_data/places.yml` |
 | Technologies and concepts (tags and inline mentions) | `_data/technologies.yml` (field reference at the top) |
 | Co-author home pages, keyed by name as written in `authors` | `_data/coauthors.yml` |
@@ -76,6 +77,10 @@ search engines) and FOAF, side by side on the same elements. Keep them in sync.
   `worksFor` an `EmployeeRole` (`roleName`, `startDate`, `endDate`) that
   `worksFor` the Organization. Keep it on the header only: wrapping the
   bullets would move their `knowsAbout` tags from the person to the role.
+- **Education**: the person is `schema:alumniOf` each school; a degree is also
+  `schema:hasCredential` an `EducationalOccupationalCredential`
+  (`credentialCategory` "degree") `recognizedBy` its school(s). Study without
+  a degree (e.g. an exchange) gets `alumniOf` only.
 - **Work locations** are `schema:City` (Wikidata IRI, GeoNames `sameAs`) on the
   role via `schema:workLocation`. Never use the organization's `location`:
   that would say where the company is, not where the job was.
