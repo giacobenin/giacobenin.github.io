@@ -2,6 +2,7 @@
 permalink: /projects/
 title: "Projects"
 rows: true
+description: "Software projects by Giacomo Benincasa, including Fair Golf Teams, a web app that builds balanced golf teams."
 ---
 
 {% comment %}

@@ -3,6 +3,7 @@ permalink: /publications/
 title: "Publications"
 lead: "Selected publications. The full list is on [Google Scholar](https://scholar.google.com/citations?user=fa77M2IAAAAJ)."
 rows: true
+description: "Selected patents and papers by Giacomo Benincasa on tactical, mobile ad hoc and IoT networking, middleware and information dissemination."
 ---
 
 {% comment %}

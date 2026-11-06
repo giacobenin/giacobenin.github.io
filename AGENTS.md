@@ -44,6 +44,9 @@ this repo are the whole design. See `README.md` for editing basics.
   `lead` (Markdown intro under the title), `rows: true` when the page emits
   its own rows (CV, Publications), `label` for a plain page's row label.
 - CV bullets are numbered (`ol.items`); tags render as `#Name` via CSS.
+- Every page sets `description` in front matter (≤ ~155 characters); `{% seo %}`
+  turns it into the meta description and `og:description`. Don't hand-write
+  meta/Open Graph tags.
 - Keep it dependency-free: no JavaScript, no icon fonts, no theme gem.
 
 ## Semantic markup (RDFa)

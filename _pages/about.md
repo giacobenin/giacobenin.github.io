@@ -2,6 +2,7 @@
 permalink: /
 layout: home
 title: "About Me"
+description: "Giacomo Benincasa is a senior software engineer building distributed systems and cloud platforms, with a background in networking research."
 ---
 
 I'm a senior software engineer who builds {% include concept.html name="distributed systems" standalone=true %} and the platforms

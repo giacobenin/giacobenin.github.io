@@ -3,6 +3,7 @@ permalink: /cv/
 title: "CV"
 lead: "My full work history is on [LinkedIn](https://www.linkedin.com/in/gbenincasa/)."
 rows: true
+description: "Professional experience of Giacomo Benincasa, senior software engineer at Amazon, previously at Optym/Amadeus, IHMC and the University of West Florida."
 ---
 
 <!-- To offer a PDF, add assets/files/cv.pdf and add a link to `lead` above:
