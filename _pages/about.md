@@ -14,7 +14,8 @@ state in {% include concept.html name="DynamoDB" standalone=true %}, and service
 
 Before that, I worked on airline schedule management systems in {% include concept.html name="C#" standalone=true %}, where I relied
 heavily on {% include concept.html name="Domain-Driven Design" standalone=true %} to model a domain full of rules, exceptions, and
-changes that ripple through the schedule.
+changes that ripple through the schedule. I was instrumental in the launch of
+{% include concept.html name="Amadeus SkyWORKS" link=true standalone=true %}.
 
 I started out in networking research, designing {% include concept.html name="middleware" standalone=true %} and protocols for
 {% include concept.html name="mobile ad hoc network" text="mobile ad hoc" standalone=true %} and {% include concept.html name="Internet of Things" text="IoT" standalone=true %} networks: {% include concept.html name="peer-to-peer" standalone=true %} data dissemination, {% include concept.html name="reliable multicast" standalone=true %},
