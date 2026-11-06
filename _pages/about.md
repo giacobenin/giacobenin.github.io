@@ -16,7 +16,9 @@ Before that, I worked on airline schedule management systems in {% include conce
 heavily on {% include concept.html name="Domain-Driven Design" standalone=true %} to model a domain full of rules, exceptions, and
 changes that ripple through the schedule. I worked on backend systems in support of
 the {% include concept.html name="Amadeus Sky Suite" standalone=true %}; in particular, I was instrumental in the launch of
-{% include concept.html name="Amadeus SkyWORKS" link=true standalone=true %}.
+{% include concept.html name="Amadeus SkyWORKS" link=true standalone=true %}, the client application
+airline schedule planning teams use to edit schedules and run optimizers, simulators and
+user-defined rules.
 
 I started out in networking research, designing {% include concept.html name="middleware" standalone=true %} and protocols for
 {% include concept.html name="mobile ad hoc network" text="mobile ad hoc" standalone=true %} and {% include concept.html name="Internet of Things" text="IoT" standalone=true %} networks: {% include concept.html name="peer-to-peer" standalone=true %} data dissemination, {% include concept.html name="reliable multicast" standalone=true %},
