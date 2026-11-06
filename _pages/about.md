@@ -12,12 +12,10 @@ Most recently I've worked in {% include concept.html name="platform engineering"
 batched forecasting workflows: orchestration with {% include concept.html name="Step Functions" text="AWS Step Functions" standalone=true %} and {% include concept.html name="Lambda" standalone=true %},
 state in {% include concept.html name="DynamoDB" standalone=true %}, and services written in {% include concept.html name="Java" standalone=true %} and {% include concept.html name="TypeScript" standalone=true %}.
 
-Before that, I worked on airline schedule management systems in {% include concept.html name="C#" standalone=true %}, where I relied
-heavily on {% include concept.html name="Domain-Driven Design" standalone=true %} to model a domain full of rules, exceptions, and
-changes that ripple through the schedule. I worked on backend systems in support of
-the {% include concept.html name="Amadeus Sky Suite" standalone=true %}; in particular, I was instrumental in the launch of
-{% include concept.html name="Amadeus SkyWORKS" link=true standalone=true %}, a flight schedule
-management system for airlines.
+Before that, I built backend systems for the {% include concept.html name="Amadeus Sky Suite" standalone=true %} of airline
+schedule management products, and was instrumental in the launch of
+{% include concept.html name="Amadeus SkyWORKS" link=true standalone=true %}. {% include concept.html name="Domain-Driven Design" standalone=true %} was key to
+modeling a domain full of rules, exceptions, and changes that ripple through the schedule.
 
 I started out in networking research, designing {% include concept.html name="middleware" standalone=true %} and protocols for
 {% include concept.html name="mobile ad hoc network" text="mobile ad hoc" standalone=true %} and {% include concept.html name="Internet of Things" text="IoT" standalone=true %} networks: {% include concept.html name="peer-to-peer" standalone=true %} data dissemination, {% include concept.html name="reliable multicast" standalone=true %},
