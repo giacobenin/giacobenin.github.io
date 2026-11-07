@@ -21,35 +21,35 @@ engines) and FOAF. Co-author home pages come from _data/coauthors.yml.
 <ol class="pubs">
     {%- for pub in pubs %}
       {%- if pub.pubtype == "paper" %}{% assign pubclass = "schema:ScholarlyArticle" %}{% else %}{% assign pubclass = "schema:CreativeWork" %}{% endif %}
-  <li class="pub" typeof="{{ pubclass }} foaf:Document">
-    <span class="yr">{{ pub.date | date: '%Y' }}</span>
+  <li><article class="pub" typeof="{{ pubclass }} foaf:Document">
+    <time class="yr" datetime="{{ pub.date | date: '%Y' }}">{{ pub.date | date: '%Y' }}</time>
     <div>
     {%- if pub.paperurl -%}
-    <a class="pub-title" property="schema:url" href="{{ pub.paperurl }}"><span property="schema:name dc:title">{{ pub.title }}</span></a>
+    <a class="pub-title" property="schema:url" href="{{ pub.paperurl }}"><cite property="schema:name dc:title">{{ pub.title }}</cite></a>
     {%- else -%}
-    <span class="pub-title" property="schema:name dc:title">{{ pub.title }}</span>
+    <cite class="pub-title" property="schema:name dc:title">{{ pub.title }}</cite>
     {%- endif -%}
-    <br><span class="meta">
+    <p class="meta">
     {%- for author in pub.authors -%}
       {%- assign homepage = site.data.coauthors[author] -%}
-      {%- comment -%} One stable IRI per person, so the same co-author is one node across publications. {%- endcomment -%}
-      <span property="schema:author foaf:maker" resource="{{ '/publications/' | absolute_url }}#{{ author | slugify }}" typeof="schema:Person foaf:Person">
+      {%- capture aid %}{{ '/publications/' | absolute_url }}#{{ author | slugify }}{% endcapture -%}
+      {%- comment -%} One stable IRI per person, so the same co-author is one node across publications. The name is in <meta>; the visible element is the link or plain text. {%- endcomment -%}
       {%- if author == site.author.publication_name -%}
         {%- comment -%} The site owner: bold, no visible link, but tied to this site and the profiles in _config.yml. {%- endcomment -%}
-        <strong property="schema:name foaf:name">{{ author }}</strong><link property="schema:url foaf:homepage" href="{{ '/' | absolute_url }}">
+        <strong property="schema:author foaf:maker" resource="{{ aid }}" typeof="schema:Person foaf:Person"><meta property="schema:name foaf:name" content="{{ author }}"><link property="schema:url foaf:homepage" href="{{ '/' | absolute_url }}">
         {%- for link in site.author.links %}<link property="schema:sameAs foaf:account" href="{{ link.url }}">{% endfor -%}
+        {{ author }}</strong>
       {%- elsif homepage -%}
-        <a property="schema:url foaf:homepage" href="{{ homepage }}"><span property="schema:name foaf:name">{{ author }}</span></a>
+        <span property="schema:author foaf:maker" resource="{{ aid }}" typeof="schema:Person foaf:Person"><meta property="schema:name foaf:name" content="{{ author }}"><a property="schema:url foaf:homepage" href="{{ homepage }}">{{ author }}</a></span>
       {%- else -%}
-        <span property="schema:name foaf:name">{{ author }}</span>
+        <span property="schema:author foaf:maker" resource="{{ aid }}" typeof="schema:Person foaf:Person"><meta property="schema:name foaf:name" content="{{ author }}">{{ author }}</span>
       {%- endif -%}
-      </span>
       {%- unless forloop.last %}, {% endunless -%}
     {%- endfor -%}
-    {%- if pub.et_al %}, et al.{% else %}.{% endif %} <em>{{ pub.venue }}</em>.</span>
+    {%- if pub.et_al %}, et al.{% else %}.{% endif %} <em>{{ pub.venue }}</em>.</p>
     <meta property="schema:datePublished" content="{{ pub.date | date: '%Y' }}">
     </div>
-  </li>
+  </article></li>
     {%- endfor %}
 </ol>
 </section>

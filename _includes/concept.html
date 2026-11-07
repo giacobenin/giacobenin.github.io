@@ -1,12 +1,15 @@
 {%- comment -%}
 Renders one technology or concept from _data/technologies.yml as RDFa: the
-site owner schema:knowsAbout / foaf:topic_interest it.
+current subject (the site owner) schema:knowsAbout / foaf:topic_interest it.
   name:       key in _data/technologies.yml (required); used as schema:name
   text:       visible text when it differs from the name, e.g. text="IoT"
+  tag:        true to render a CV tag (<li>, inside a <ul class="tech-tags">)
   link:       true to make the text a visible link to the entry's `url`
-  tag:        true to style it as a CV tag
-  standalone: true when used outside a block that already sets the person as
-              subject (e.g. on the About page)
+  standalone: true when used outside a block whose subject is already the
+              site owner (the About text and CV already set it)
+Defined terms (with `description`) render as <dfn>, showing the definition
+on hover. The name is carried by <meta>, so the visible text needs no extra
+element.
 {%- endcomment -%}
 {%- assign c = site.data.technologies[include.name] -%}
 {%- if c.wikidata -%}
@@ -14,13 +17,16 @@ site owner schema:knowsAbout / foaf:topic_interest it.
 {%- else -%}
   {%- capture cid %}{{ "/cv/" | absolute_url }}#tech-{{ include.name | slugify }}{% endcapture -%}
 {%- endif -%}
+{%- assign shown = include.text | default: include.name -%}
+{%- if include.tag -%}{%- assign el = "li" -%}{%- elsif c.description and include.link != true -%}{%- assign el = "dfn" -%}{%- else -%}{%- assign el = "span" -%}{%- endif -%}
 {%- if include.standalone -%}
 <span prefix="schema: https://schema.org/ foaf: http://xmlns.com/foaf/0.1/" resource="{{ "/publications/" | absolute_url }}#{{ site.author.publication_name | slugify }}">
 {%- endif -%}
-<span{% if include.tag %} class="tech-tag"{% elsif c.description and include.link != true %} class="defined" title="{{ c.description | xml_escape }}"{% endif %} property="schema:knowsAbout foaf:topic_interest" resource="{{ cid }}" typeof="schema:{{ c.type | default: "Thing" }}">{% if include.link and c.url %}<a property="schema:url schema:sameAs" href="{{ c.url }}">{% endif %}{% if include.text and include.text != include.name %}<span property="schema:name" content="{{ include.name | xml_escape }}">{{ include.text | xml_escape }}</span>{% else %}<span property="schema:name">{{ include.name | xml_escape }}</span>{% endif %}{% if include.link and c.url %}</a>{% endif %}
+<{{ el }}{% if include.tag %} class="tech-tag"{% elsif el == "dfn" %} title="{{ c.description | xml_escape }}"{% endif %} property="schema:knowsAbout foaf:topic_interest" resource="{{ cid }}" typeof="schema:{{ c.type | default: "Thing" }}"><meta property="schema:name" content="{{ include.name | xml_escape }}">
 {%- if c.description %}<meta property="schema:description" content="{{ c.description | xml_escape }}">{% endif -%}
 {%- if c.url %}{% unless include.link %}<link property="schema:url schema:sameAs" href="{{ c.url }}">{% endunless %}{% endif -%}
 {%- if c.provider %}<link property="schema:provider" href="http://www.wikidata.org/entity/{{ c.provider }}">{% endif -%}
 {%- if c.part_of %}<link property="schema:isPartOf" href="http://www.wikidata.org/entity/{{ c.part_of }}">{% endif -%}
-</span>
+{%- if include.link and c.url %}<a property="schema:url schema:sameAs" href="{{ c.url }}">{{ shown | xml_escape }}</a>{% else %}{{ shown | xml_escape }}{% endif -%}
+</{{ el }}>
 {%- if include.standalone %}</span>{% endif -%}

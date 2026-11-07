@@ -24,13 +24,13 @@ identified by its Wikidata item where one exists.
 <h2 id="professional-experience">Professional Experience</h2>
 <div>
 {%- for job in site.data.cv.experience %}
-<div class="job">
+<article class="job">
   {%- comment -%}
   Employment as a schema.org Role: person -worksFor-> EmployeeRole (roleName,
   startDate, endDate) -worksFor-> Organization. Only on the header, so the
   bullets' knowsAbout tags stay attached to the person.
   {%- endcomment %}
-  <div class="job-head" property="schema:worksFor" typeof="schema:EmployeeRole">
+  <header class="job-head" property="schema:worksFor" typeof="schema:EmployeeRole">
     <meta property="schema:roleName" content="{{ job.title | xml_escape }}">
     {%- if job.start %}<meta property="schema:startDate" content="{{ job.start }}">{% endif -%}
     {%- if job.end %}<meta property="schema:endDate" content="{{ job.end }}">{% endif -%}
@@ -44,9 +44,10 @@ identified by its Wikidata item where one exists.
       <span property="schema:workLocation" resource="http://www.wikidata.org/entity/{{ place.wikidata }}" typeof="schema:City"><meta property="schema:name" content="{{ place.name | xml_escape }}"><link property="schema:sameAs" href="https://sws.geonames.org/{{ place.geonames }}/"></span>
     {%- endif %}
     <h3>{{ job.title | xml_escape }}, {{ job.org | xml_escape }}</h3>
-    <span class="when">{{ job.dates }}</span>
-    <span class="where">{% if job.note %}{{ job.note | xml_escape }} · {% endif %}{{ job.location | xml_escape }}</span>
-  </div>
+    {%- assign d = job.dates | split: " – " %}
+    <p class="when"><time datetime="{{ job.start }}">{{ d[0] }}</time> – {% if job.end %}<time datetime="{{ job.end }}">{{ d[1] }}</time>{% else %}{{ d[1] }}{% endif %}</p>
+    <p class="where">{% if job.note %}{{ job.note | xml_escape }} · {% endif %}{{ job.location | xml_escape }}</p>
+  </header>
   <ol class="items">
   {%- for item in job.items %}
     {%- comment -%} Mark up concepts flagged `mention: true` where they appear in the text. {%- endcomment -%}
@@ -58,18 +59,18 @@ identified by its Wikidata item where one exists.
         {%- assign text = text | replace: concept_name, concept -%}
       {%- endif -%}
     {%- endfor %}
-    <li><div>{{ text }}
+    <li><p>{{ text }}</p>
       {%- if item.tags %}
-      <span class="tech-tags">
+      <ul class="tech-tags" aria-label="Technologies">
         {%- for tag in item.tags -%}
           {%- include concept.html name=tag tag=true -%}
         {%- endfor -%}
-      </span>
+      </ul>
       {%- endif %}
-    </div></li>
+    </li>
   {%- endfor %}
   </ol>
-</div>
+</article>
 {%- endfor %}
 </div>
 </section>
@@ -83,8 +84,8 @@ school(s). Schools come from _data/organizations.yml.
 <h2 id="education">Education</h2>
 <div>
 {%- for ed in site.data.cv.education %}
-<div class="job">
-  <div class="job-head">
+<article class="job">
+  <header class="job-head">
     {%- for key in ed.schools -%}
       {%- assign school = site.data.organizations[key] -%}
       <span property="schema:alumniOf" resource="http://www.wikidata.org/entity/{{ school.wikidata }}" typeof="schema:{{ school.type | default: 'Organization' }}"><meta property="schema:name" content="{{ school.name | xml_escape }}"><link property="schema:url schema:sameAs" href="{{ school.url }}"></span>
@@ -93,21 +94,21 @@ school(s). Schools come from _data/organizations.yml.
       <span property="schema:alumniOf" resource="http://www.wikidata.org/entity/{{ xs.wikidata }}" typeof="schema:{{ xs.type | default: 'Organization' }}"><meta property="schema:name" content="{{ xs.name | xml_escape }}"><link property="schema:url schema:sameAs" href="{{ xs.url }}">{% if xs.parent %}<link property="schema:parentOrganization" href="http://www.wikidata.org/entity/{{ xs.parent }}">{% endif %}</span>
     {%- endif %}
     {%- if ed.degree %}
-    <h3 property="schema:hasCredential" typeof="schema:EducationalOccupationalCredential"><span property="schema:name">{{ ed.title | xml_escape }}</span><meta property="schema:credentialCategory" content="degree">
+    <h3 property="schema:hasCredential" typeof="schema:EducationalOccupationalCredential"><meta property="schema:name" content="{{ ed.title | xml_escape }}"><meta property="schema:credentialCategory" content="degree">
       {%- for key in ed.schools %}<link property="schema:recognizedBy" href="http://www.wikidata.org/entity/{{ site.data.organizations[key].wikidata }}">{% endfor -%}
-    </h3>
+      {{ ed.title | xml_escape }}</h3>
     {%- else %}
     <h3>{{ ed.title | xml_escape }}</h3>
     {%- endif %}
-    <span class="where">
+    <p class="where">
       {%- for key in ed.schools -%}{{ site.data.organizations[key].name | xml_escape }}{% unless forloop.last %} · {% endunless %}{%- endfor -%}
       {%- if ed.note %} ({{ ed.note | xml_escape }}){% endif -%}
-    </span>
+    </p>
     {%- if ed.exchange %}
-    <span class="where">Includes an exchange at the {{ site.data.organizations[ed.exchange].name | xml_escape }}</span>
+    <p class="where">Includes an exchange at the {{ site.data.organizations[ed.exchange].name | xml_escape }}</p>
     {%- endif %}
-  </div>
-</div>
+  </header>
+</article>
 {%- endfor %}
 </div>
 </section>

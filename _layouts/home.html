@@ -16,7 +16,8 @@ layout: default
 
 <section class="row">
   <h2>{{ page.title | default: 'About' }}</h2>
-  <div class="prose">
+  {%- comment -%} The About text is about the site owner: concepts inside it attach to this subject (RDFa). {%- endcomment %}
+  <div class="prose" prefix="schema: https://schema.org/ foaf: http://xmlns.com/foaf/0.1/" resource="{{ '/publications/' | absolute_url }}#{{ site.author.publication_name | slugify }}">
 {{ content }}
   </div>
 </section>

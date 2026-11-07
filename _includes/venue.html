@@ -5,6 +5,6 @@ current page schema:mentions a schema:EventSeries identified by Wikidata.
   text: visible text (defaults to the venue's name)
 {%- endcomment -%}
 {%- assign v = site.data.venues[include.id] -%}
-<span prefix="schema: https://schema.org/" resource="{{ page.url | absolute_url }}"><span property="schema:mentions" resource="http://www.wikidata.org/entity/{{ v.wikidata }}" typeof="schema:EventSeries"><span property="schema:name" content="{{ v.name | xml_escape }}">{{ include.text | default: v.name | xml_escape }}</span>
+<span prefix="schema: https://schema.org/" resource="{{ page.url | absolute_url }}"><span property="schema:mentions" resource="http://www.wikidata.org/entity/{{ v.wikidata }}" typeof="schema:EventSeries"><meta property="schema:name" content="{{ v.name | xml_escape }}">
 {%- if v.held_with %}<link property="schema:superEvent" href="http://www.wikidata.org/entity/{{ v.held_with }}">{% endif -%}
-</span></span>
+{{ include.text | default: v.name | xml_escape }}</span></span>

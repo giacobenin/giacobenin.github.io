@@ -115,6 +115,7 @@ a {
   .when { font-size: 14px; color: $muted; font-variant-numeric: tabular-nums; padding-top: 5px; white-space: nowrap; }
   .where { grid-column: 1 / -1; color: $muted; font-size: 15px; }
   > span[typeof] { display: none; }   // metadata-only (employer RDFa), keep out of the grid
+  p { margin: 0; }
 }
 .items {
   list-style: none; counter-reset: item; padding: 0; margin: 18px 0 0;
@@ -122,16 +123,22 @@ a {
     counter-increment: item;
     display: grid; grid-template-columns: 36px 1fr;
     margin-bottom: 16px;
+    > * { grid-column: 2; }   // text <p> and tag <ul> share the content column
+    > p { margin: 0; }
     &::before {
+      grid-row: 1;
       content: counter(item, decimal-leading-zero);
       color: $accent; font-weight: 700; font-size: 14px; padding-top: 3px;
     }
   }
 }
-// Concepts defined on the site: definition shows on hover.
-.defined { text-decoration: underline dotted $muted; text-underline-offset: 3px; cursor: help; }
+// Concepts defined on the site (<dfn title=…>): definition shows on hover.
+dfn[title] { font-style: normal; text-decoration: underline dotted $muted; text-underline-offset: 3px; cursor: help; }
 
-.tech-tags { display: block; margin-top: 6px; }
+// Titles of works: semantic <cite>, not italic.
+cite { font-style: normal; }
+
+.tech-tags { display: block; list-style: none; padding: 0; margin: 6px 0 0; }
 .tech-tag {
   display: inline-block; margin-right: 12px;
   font-size: 13px; font-weight: 500; color: $muted;
@@ -140,6 +147,7 @@ a {
 
 // Publications
 .pubs { list-style: none; padding: 0; margin: 0; }
+.pubs > li { margin-bottom: 18px; &:last-child { margin-bottom: 0; } }
 .pub {
   display: grid; grid-template-columns: 64px 1fr;
   margin-bottom: 18px;
@@ -147,7 +155,7 @@ a {
   .yr { font-weight: 700; font-variant-numeric: tabular-nums; }
   .pub-title { font-weight: 700; }
   a.pub-title { text-decoration-thickness: 2px; }
-  .meta { color: $muted; font-size: 15px; }
+  .meta { color: $muted; font-size: 15px; margin: 0; }
 }
 
 // Footer
