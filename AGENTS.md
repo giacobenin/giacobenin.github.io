@@ -35,12 +35,18 @@ this repo are the whole design. See `README.md` for editing basics.
 | JSON-LD for every page, generated from the data files | `_includes/jsonld.html` |
 | `llms.txt` (llmstxt.org summary), generated from the data files | `llms.txt` |
 | Layouts: `default` (top bar, footer, `{% seo %}`), `home` (hero + About row), `page` (big title, optional `lead`, rows) | `_layouts/` |
-| All styles | `assets/css/main.scss` |
+| All styles (inlined into every page's `<head>`) | `_includes/site.scss` |
+| Self-hosted Inter Tight (Latin, 400/500/700/800) and its licence | `assets/fonts/` |
 
 ## Design (Minimal Swiss)
 
-- One typeface (Inter Tight, from Google Fonts), black on white, one accent
-  (`$accent`, orange). Variables are at the top of `assets/css/main.scss`.
+- One typeface (Inter Tight, self-hosted), black on white, one accent
+  (`$accent`, orange). Variables are at the top of `_includes/site.scss`.
+- Nothing may block the first paint or call a third party: CSS is compiled
+  with `scssify` and inlined by `_layouts/default.html`; fonts are local
+  (`assets/fonts/`, SIL OFL, `OFL.txt` alongside) with 400 and 800
+  preloaded. Don't add external stylesheets, fonts or scripts. A new weight
+  or character set means adding its `.woff2` and `@font-face`.
 - Pages are a stack of `<section class="row">` blocks: a small uppercase
   `h2` label in the left column, content in the right (2fr). Below 820px the
   grid collapses to one column. Check both widths after layout changes.

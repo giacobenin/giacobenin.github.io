@@ -1,7 +1,7 @@
 # gbenin.casa
 
 Personal site of Giacomo Benincasa, built with Jekyll (no theme: layouts in
-`_layouts/`, styles in `assets/css/main.scss`) and hosted on GitHub Pages.
+`_layouts/`, styles in `_includes/site.scss`) and hosted on GitHub Pages.
 
 ## Publish
 
@@ -33,7 +33,8 @@ Then open http://localhost:4000.
 ## Edit
 
 - Profile, profile links, site description: `_config.yml`
-- Layouts: `_layouts/`; styles: `assets/css/main.scss`
+- Layouts: `_layouts/`; styles: `_includes/site.scss` (inlined into each page);
+  fonts: `assets/fonts/` (self-hosted Inter Tight, SIL OFL)
 - Top navigation: `_data/navigation.yml`
 - Pages: `_pages/`
 - Publications: one file per paper in `_publications/`
