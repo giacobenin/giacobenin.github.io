@@ -54,7 +54,7 @@ Kept separate from jekyll-seo-tag's small WebSite block.
 {%- for key in school_keys -%}
   {%- assign s = site.data.organizations[key] -%}
   {"@type":{{ s.type | default: 'Organization' | jsonify }},"@id":"{{ wd }}{{ s.wikidata }}","name":{{ s.name | jsonify }},"url":{{ s.url | jsonify }},"sameAs":{{ s.url | jsonify }}
-  {%- if s.parent %},"parentOrganization":{"@id":"{{ wd }}{{ s.parent }}"}{% endif -%}
+  {%- if s.parent %}{%- for o in site.data.organizations -%}{%- if o[1].wikidata == s.parent %}{% assign par = o[1] %}{% endif -%}{%- endfor -%},"parentOrganization":{"@type":{{ par.type | default: 'Organization' | jsonify }},"@id":"{{ wd }}{{ s.parent }}","name":{{ par.name | jsonify }}}{% endif -%}
   }{% unless forloop.last %},{% endunless %}
 {%- endfor -%}
 {%- endcapture -%}

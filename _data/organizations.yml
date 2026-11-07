@@ -13,4 +13,5 @@
 # Schools
 "UF":        { name: "University of Florida",                    wikidata: Q501758,  url: "https://www.ufl.edu/",        type: CollegeOrUniversity }
 "UNIMORE":   { name: "University of Modena and Reggio Emilia",   wikidata: Q1243705, url: "https://www.unimore.it/",     type: CollegeOrUniversity }
+"Sheffield": { name: "University of Sheffield", wikidata: Q823917, url: "https://www.sheffield.ac.uk/", type: CollegeOrUniversity }   # parent of Sheffield-CS
 "Sheffield-CS": { name: "Department of Computer Science, University of Sheffield", wikidata: Q86019290, url: "https://www.sheffield.ac.uk/cs", type: EducationalOrganization, parent: Q823917 }   # parent: University of Sheffield

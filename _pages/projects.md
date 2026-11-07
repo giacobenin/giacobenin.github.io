@@ -17,7 +17,7 @@ data feeds the page's JSON-LD (_includes/jsonld.html).
 <article class="row" resource="{{ p.id }}" typeof="schema:{{ p.type | default: 'SoftwareApplication' }}">
 <h2 property="schema:name">{{ p.name | xml_escape }}</h2>
 <div class="prose">
-<link property="schema:author" href="{{ me }}">
+<span property="schema:author" resource="{{ me }}" typeof="schema:Person"><meta property="schema:name" content="{{ site.author.name | xml_escape }}"></span>
 {%- if p.category %}<meta property="schema:applicationCategory" content="{{ p.category }}">{% endif %}
 <p property="schema:description">{{ p.description | xml_escape }}</p>
 {%- if p.paper %}
