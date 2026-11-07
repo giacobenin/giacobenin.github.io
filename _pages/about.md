@@ -1,7 +1,7 @@
 ---
 permalink: /
 layout: home
-title: "About Me"
+label: "About Me"   # section label; no `title`, so the home <title> is "name | tagline"
 description: "Giacomo Benincasa is a senior software engineer building distributed systems and cloud platforms, with a background in networking research."
 ---
 
