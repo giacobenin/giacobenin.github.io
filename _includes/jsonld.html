@@ -106,7 +106,7 @@ Kept separate from jekyll-seo-tag's small WebSite block.
 {"@context":"https://schema.org","@graph":[
 {"@type":"Person","@id":{{ me | jsonify }},"name":{{ site.author.name | jsonify }},"url":{{ '/' | absolute_url | jsonify }},"description":{{ site.description | jsonify }}
 {%- if site.data.cv.experience[0] %},"jobTitle":{{ site.data.cv.experience[0].title | jsonify }}{% endif -%}
-,"sameAs":[{% for link in site.author.links %}{{ link.url | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}]
+,"sameAs":[{% for link in site.author.links %}{{ link.url | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}{% for u in site.author.same_as %},{{ u | jsonify }}{% endfor %}]
 ,"knowsAbout":[{{ knows }}]
 ,"worksFor":[{{ roles }}]
 ,"alumniOf":[{{ schools }}]
