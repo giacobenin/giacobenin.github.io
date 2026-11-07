@@ -42,6 +42,8 @@ footer:
       url: "https://www.linkedin.com/in/gbenincasa/"
 
 # Build settings
+sass:
+  style: compressed   # the stylesheet is inlined in every page
 markdown  : kramdown
 permalink : /:categories/:title/
 include   : ["_pages"]

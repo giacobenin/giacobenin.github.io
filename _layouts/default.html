@@ -6,10 +6,12 @@
   {% seo %}
   {% include jsonld.html %}
   {% feed_meta %}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700;800&display=swap">
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  {%- comment -%} Self-hosted fonts; preload the body (400) and heading (800) weights. {%- endcomment %}
+  <link rel="preload" href="{{ '/assets/fonts/inter-tight-latin-400.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ '/assets/fonts/inter-tight-latin-800.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+  {%- comment -%} Styles are inlined, so nothing blocks the first paint. Source: _includes/site.scss. {%- endcomment %}
+  {%- capture site_styles %}{% include site.scss %}{% endcapture %}
+  <style>{{ site_styles | scssify }}</style>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
