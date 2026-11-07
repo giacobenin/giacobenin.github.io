@@ -31,6 +31,9 @@ this repo are the whole design. See `README.md` for editing basics.
 | Publications, one file each: `title`, `date`, `authors` (list), `et_al`, `venue`, `pubtype` (`patent`/`paper`), `paperurl` | `_publications/` |
 | Page templates | `_pages/` (`cv.md`, `publications.md` render the data above) |
 | Shared RDFa markup for a technology/concept | `_includes/concept.html` |
+| Projects (name, id, type, url, description, related paper) | `_data/projects.yml` |
+| JSON-LD for every page, generated from the data files | `_includes/jsonld.html` |
+| `llms.txt` (llmstxt.org summary), generated from the data files | `llms.txt` |
 | Layouts: `default` (top bar, footer, `{% seo %}`), `home` (hero + About row), `page` (big title, optional `lead`, rows) | `_layouts/` |
 | All styles | `assets/css/main.scss` |
 
@@ -92,6 +95,19 @@ search engines) and FOAF, side by side on the same elements. Keep them in sync.
   `schema:mentions` (via `_includes/venue.html`), never as `knowsAbout`.
 - IRIs use `site.url` (`https://gbenin.casa`) on purpose, so they stay stable
   when the custom domain is restored. Don't switch them to github.io.
+
+## JSON-LD and llms.txt
+
+- Every page carries the site owner as a JSON-LD `Person` (plus page-specific
+  nodes) from `_includes/jsonld.html`, alongside the RDFa. Both are generated
+  from the same data files with the same identifiers; keep them in step when
+  adding a new kind of markup.
+- Structured data must describe what's visible: don't leave entries in
+  `_data/technologies.yml` that no page uses (they'd appear only in JSON-LD).
+- After markup changes, check the JSON-LD parses (`json.loads` on each
+  `application/ld+json` block) and that its `knowsAbout`, `worksFor` and
+  `alumniOf` identifiers match the RDFa.
+- `llms.txt` is Liquid-generated; it needs no edits unless its sections change.
 
 ## Build constraints
 
