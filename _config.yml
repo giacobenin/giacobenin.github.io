@@ -17,6 +17,7 @@ author:
   publication_name : "G. Benincasa"   # how your name appears in _publications/ author lists (shown in bold)
   same_as :          # identity links that aren't visible profile links (schema:sameAs only)
     - "https://www.wikidata.org/wiki/Q142072471"
+    - "https://dblp.org/pid/74/10923"
   avatar : # "/assets/images/profile.jpg"  (uncomment after adding a square photo)
   bio    : "Senior Software Engineer"
   location : # optional
