@@ -1,0 +1,18 @@
+# Projects shown on the Projects page (and in its JSON-LD), most recent first.
+#   id:          stable IRI for the project (usually its home page)
+#   type:        schema.org class (WebApplication, SoftwareApplication, ...)
+#   url:         link shown as "Open <name>"
+#   category:    schema:applicationCategory
+#   paper:       related publication (cited as schema:citation)
+- name: "Fair Golf Teams"
+  id: "https://fairgolfteams.neocities.org/"
+  type: WebApplication
+  url: "https://fairgolfteams.neocities.org/#/"
+  category: "SportsApplication"
+  description: "A web app for golf directors who need to split a field of players into balanced teams. Given each player's USGA Handicap Index, the number of teams, how many best balls count, and the handicap allowance, it runs simulations to build teams that are as evenly matched as possible."
+  paper:
+    title: "Algorithms and Software for the Golf Director Problem"
+    doi: "10.3233/JSA-200346"
+    journal: "Journal of Sports Analytics"
+    issue: "6(3)"
+    date: "2020-07-07"

@@ -1,0 +1,116 @@
+{%- comment -%}
+JSON-LD for tools that don't read RDFa. Generated from the same data files as
+the pages' RDFa, with the same identifiers, so the two can't drift:
+  - every page: the site owner as a schema:Person (profiles, skills, roles,
+    schools, degrees)
+  - About (/):          the page, mentioning conference venues
+  - Publications:       each publication, with authors
+  - Projects:           each project, citing its paper
+Kept separate from jekyll-seo-tag's small WebSite block.
+{%- endcomment -%}
+{%- capture me %}{{ '/publications/' | absolute_url }}#{{ site.author.publication_name | slugify }}{% endcapture -%}
+{%- assign wd = "http://www.wikidata.org/entity/" -%}
+
+{%- comment -%} Skills and concepts {%- endcomment -%}
+{%- capture knows -%}
+{%- for e in site.data.technologies -%}
+  {%- assign k = e[0] -%}{%- assign c = e[1] -%}
+  {%- if c.wikidata %}{% capture cid %}{{ wd }}{{ c.wikidata }}{% endcapture %}{% else %}{% capture cid %}{{ '/cv/' | absolute_url }}#tech-{{ k | slugify }}{% endcapture %}{% endif -%}
+  {"@type":{{ c.type | default: 'Thing' | jsonify }},"@id":{{ cid | jsonify }},"name":{{ k | jsonify }}
+  {%- if c.url %},"url":{{ c.url | jsonify }},"sameAs":{{ c.url | jsonify }}{% endif -%}
+  {%- if c.description %},"description":{{ c.description | jsonify }}{% endif -%}
+  {%- if c.provider %},"provider":{"@id":"{{ wd }}{{ c.provider }}"}{% endif -%}
+  {%- if c.part_of %},"isPartOf":{"@id":"{{ wd }}{{ c.part_of }}"}{% endif -%}
+  }{% unless forloop.last %},{% endunless %}
+{%- endfor -%}
+{%- endcapture -%}
+
+{%- comment -%} Employment, as schema.org Roles {%- endcomment -%}
+{%- capture roles -%}
+{%- for job in site.data.cv.experience -%}
+  {"@type":"EmployeeRole","roleName":{{ job.title | jsonify }}
+  {%- if job.start %},"startDate":{{ job.start | jsonify }}{% endif -%}
+  {%- if job.end %},"endDate":{{ job.end | jsonify }}{% endif -%}
+  {%- assign place = site.data.places[job.place] -%}
+  {%- if place %},"workLocation":{"@type":"City","@id":"{{ wd }}{{ place.wikidata }}","name":{{ place.name | jsonify }},"sameAs":"https://sws.geonames.org/{{ place.geonames }}/"}{% endif -%}
+  ,"worksFor":[
+  {%- for key in job.employers -%}
+    {%- assign org = site.data.organizations[key] -%}
+    {"@type":{{ org.type | default: 'Organization' | jsonify }},"@id":"{{ wd }}{{ org.wikidata }}","name":{{ org.name | jsonify }},"url":{{ org.url | jsonify }},"sameAs":{{ org.url | jsonify }}}{% unless forloop.last %},{% endunless %}
+  {%- endfor -%}
+  ]}{% unless forloop.last %},{% endunless %}
+{%- endfor -%}
+{%- endcapture -%}
+
+{%- comment -%} Schools (degree schools and exchange hosts, de-duplicated) {%- endcomment -%}
+{%- assign school_keys = "" | split: "" -%}
+{%- for ed in site.data.cv.education -%}
+  {%- for key in ed.schools %}{% assign school_keys = school_keys | push: key %}{% endfor -%}
+  {%- if ed.exchange %}{% assign school_keys = school_keys | push: ed.exchange %}{% endif -%}
+{%- endfor -%}
+{%- assign school_keys = school_keys | uniq -%}
+{%- capture schools -%}
+{%- for key in school_keys -%}
+  {%- assign s = site.data.organizations[key] -%}
+  {"@type":{{ s.type | default: 'Organization' | jsonify }},"@id":"{{ wd }}{{ s.wikidata }}","name":{{ s.name | jsonify }},"url":{{ s.url | jsonify }},"sameAs":{{ s.url | jsonify }}
+  {%- if s.parent %},"parentOrganization":{"@id":"{{ wd }}{{ s.parent }}"}{% endif -%}
+  }{% unless forloop.last %},{% endunless %}
+{%- endfor -%}
+{%- endcapture -%}
+
+{%- comment -%} Degrees {%- endcomment -%}
+{%- assign degrees = site.data.cv.education | where: "degree", true -%}
+{%- capture credentials -%}
+{%- for ed in degrees -%}
+  {"@type":"EducationalOccupationalCredential","name":{{ ed.title | jsonify }},"credentialCategory":"degree","recognizedBy":[
+  {%- for key in ed.schools %}{"@id":"{{ wd }}{{ site.data.organizations[key].wikidata }}"}{% unless forloop.last %},{% endunless %}{% endfor -%}
+  ]}{% unless forloop.last %},{% endunless %}
+{%- endfor -%}
+{%- endcapture -%}
+
+{%- comment -%} Page-specific nodes {%- endcomment -%}
+{%- capture extra -%}
+{%- if page.url == '/' -%}
+  ,{"@type":"AboutPage","@id":{{ page.url | absolute_url | jsonify }},"about":{"@id":{{ me | jsonify }}},"mentions":[
+  {%- for v in site.data.venues -%}
+    {"@type":"EventSeries","@id":"{{ wd }}{{ v[1].wikidata }}","name":{{ v[1].name | jsonify }}{% if v[1].held_with %},"superEvent":{"@id":"{{ wd }}{{ v[1].held_with }}"}{% endif %}}{% unless forloop.last %},{% endunless %}
+  {%- endfor -%}
+  ]}
+{%- elsif page.url == '/publications/' -%}
+  {%- assign pubs = site.publications | sort: "date" | reverse -%}
+  {%- for pub in pubs -%}
+    ,{"@type":{% if pub.pubtype == 'paper' %}"ScholarlyArticle"{% else %}"CreativeWork"{% endif %},"name":{{ pub.title | jsonify }},"datePublished":"{{ pub.date | date: '%Y' }}"
+    {%- if pub.paperurl %},"@id":{{ pub.paperurl | jsonify }},"url":{{ pub.paperurl | jsonify }}{% endif -%}
+    {%- if pub.pubtype == 'paper' %},"isPartOf":{"@type":"CreativeWork","name":{{ pub.venue | jsonify }}}{% else %},"identifier":{{ pub.venue | jsonify }}{% endif -%}
+    ,"author":[
+    {%- for author in pub.authors -%}
+      {%- capture aid %}{{ '/publications/' | absolute_url }}#{{ author | slugify }}{% endcapture -%}
+      {"@type":"Person","@id":{{ aid | jsonify }},"name":{{ author | jsonify }}
+      {%- assign homepage = site.data.coauthors[author] -%}
+      {%- if homepage %},"url":{{ homepage | jsonify }}{% endif -%}
+      }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+    ]}
+  {%- endfor -%}
+{%- elsif page.url == '/projects/' -%}
+  {%- for p in site.data.projects -%}
+    ,{"@type":{{ p.type | default: 'SoftwareApplication' | jsonify }},"@id":{{ p.id | jsonify }},"name":{{ p.name | jsonify }},"url":{{ p.url | jsonify }},"description":{{ p.description | jsonify }},"author":{"@id":{{ me | jsonify }}}
+    {%- if p.category %},"applicationCategory":{{ p.category | jsonify }}{% endif -%}
+    {%- if p.paper %},"citation":{"@type":"ScholarlyArticle","@id":"https://doi.org/{{ p.paper.doi }}","url":"https://doi.org/{{ p.paper.doi }}","name":{{ p.paper.title | jsonify }},"datePublished":{{ p.paper.date | jsonify }},"isPartOf":{"@type":"Periodical","name":{{ p.paper.journal | jsonify }}}}{% endif -%}
+    }
+  {%- endfor -%}
+{%- endif -%}
+{%- endcapture -%}
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Person","@id":{{ me | jsonify }},"name":{{ site.author.name | jsonify }},"url":{{ '/' | absolute_url | jsonify }},"description":{{ site.description | jsonify }}
+{%- if site.data.cv.experience[0] %},"jobTitle":{{ site.data.cv.experience[0].title | jsonify }}{% endif -%}
+,"sameAs":[{% for link in site.author.links %}{{ link.url | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}]
+,"knowsAbout":[{{ knows }}]
+,"worksFor":[{{ roles }}]
+,"alumniOf":[{{ schools }}]
+,"hasCredential":[{{ credentials }}]}
+{{ extra }}
+]}
+</script>

@@ -1,0 +1,48 @@
+---
+# llms.txt (https://llmstxt.org): a plain Markdown summary of the site for AI
+# tools, generated from the same data files as the pages.
+layout: null
+permalink: /llms.txt
+sitemap: false
+---
+# {{ site.author.name }}
+
+> {{ site.description }}
+
+{% assign job = site.data.cv.experience[0] -%}
+{{ site.author.name }} is a {{ job.title | downcase }} at {{ job.org }} ({{ job.note }}, {{ job.location }}). Structured data (schema.org JSON-LD and RDFa) on every page describes the roles, education, skills and publications listed here, with Wikidata identifiers.
+
+## Pages
+
+{% assign urls = "/" | split: "," -%}
+{%- for item in site.data.navigation.main %}{% assign urls = urls | push: item.url %}{% endfor -%}
+{%- for url in urls -%}
+{%- assign p = site.pages | where: "url", url | first -%}
+- [{% if url == "/" %}About{% else %}{{ p.title }}{% endif %}]({{ url | absolute_url }}): {{ p.description }}
+{% endfor %}
+## Experience
+
+{% for job in site.data.cv.experience -%}
+- {{ job.title }}, {{ job.org }}{% if job.note %} ({{ job.note }}){% endif %}, {{ job.location }}. {{ job.dates }}.
+{% endfor %}
+## Education
+
+{% for ed in site.data.cv.education -%}
+- {{ ed.title }}: {% for key in ed.schools %}{{ site.data.organizations[key].name }}{% unless forloop.last %} and {% endunless %}{% endfor %}{% if ed.note %} ({{ ed.note | downcase }}){% endif %}{% if ed.exchange %}; includes an exchange at the {{ site.data.organizations[ed.exchange].name }}{% endif %}.
+{% endfor %}
+## Selected publications
+
+{% assign pubs = site.publications | sort: "date" | reverse -%}
+{%- for pub in pubs -%}
+- {% if pub.paperurl %}[{{ pub.title }}]({{ pub.paperurl }}){% else %}{{ pub.title }}{% endif %}. {{ pub.authors | join: ", " }}{% if pub.et_al %}, et al{% endif %}. {{ pub.venue }}.
+{% endfor %}
+## Projects
+
+{% for p in site.data.projects -%}
+- [{{ p.name }}]({{ p.url }}): {{ p.description }}
+{% endfor %}
+## Profiles
+
+{% for link in site.author.links -%}
+- [{{ link.label }}]({{ link.url }})
+{% endfor %}
