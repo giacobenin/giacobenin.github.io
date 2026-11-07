@@ -73,6 +73,13 @@ search engines) and FOAF, side by side on the same elements. Keep them in sync.
   - Technologies/concepts: `http://www.wikidata.org/entity/<QID>` if a
     Wikidata item exists; otherwise `…/cv/#tech-<name | slugify>` plus the
     official docs page as `schema:url`/`schema:sameAs`.
+- **Be precise with types.** Managed cloud services (AWS) are `Service`
+  (with `provider`); software you install or run is `SoftwareApplication`;
+  languages are `ComputerLanguage`; terms defined on the site `DefinedTerm`.
+  Google's Rich Results Test lists every `SoftwareApplication` as an
+  "invalid Software App" (no price/rating): expected and harmless, so don't
+  retype real software to silence it. Any referenced node (e.g. a
+  `superEvent`) needs a type and name, or Google guesses one.
 - **Identity sources, in order:** Wikidata item → official product/docs page
   → a term defined on the site (`type: DefinedTerm` plus `description`, shown
   on hover via `.defined`). Never link a page you couldn't load.
