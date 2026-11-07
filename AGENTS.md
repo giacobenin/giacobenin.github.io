@@ -116,8 +116,7 @@ After pushing to `main`:
 1. Wait for the `pages-build-deployment` run for your commit:
    `gh run list -R giacobenin/giacobenin.github.io -L 1`. On failure, read
    `gh run view <id> --log-failed`; Liquid errors show up there.
-2. Fetch the live page (https://giacobenin.github.io/...) and check the
-   change.
+2. Fetch the live page (https://gbenin.casa/...) and check the change.
 3. For markup changes, extract the RDF (e.g. with `pyRdfa3` + `rdflib` in a
    throwaway virtualenv) and confirm identities, counts and links. Don't
    rely on reading the HTML.
@@ -129,17 +128,9 @@ After pushing to `main`:
   `git -c credential.helper='!gh auth git-credential' push origin main`.
 - Commit messages: imperative subject, short body saying why.
 
-## Current state: custom domain is off
+## Hosting
 
-`gbenin.casa` DNS (registrar: GoDaddy) doesn't point to GitHub Pages yet, so
-the custom domain is disabled and `CNAME` was removed (commit `898211a`). The
-site is served at https://giacobenin.github.io.
-
-To restore it once `dig gbenin.casa +short` shows only 185.199.108.153,
-185.199.109.153, 185.199.110.153 and 185.199.111.153:
-
-1. Re-add `CNAME` containing `gbenin.casa`, commit and push.
-2. Set the domain: `gh api -X PUT repos/giacobenin/giacobenin.github.io/pages -f cname=gbenin.casa -f 'source[branch]=main' -f 'source[path]=/'`.
-3. Once GitHub has issued the certificate, enable HTTPS:
-   `gh api -X PUT repos/giacobenin/giacobenin.github.io/pages -F https_enforced=true`.
-4. Delete this section.
+- Live at https://gbenin.casa (custom domain via `CNAME`; DNS at GoDaddy: four
+  A records for `@` to 185.199.108–111.153, `www` CNAME to
+  `giacobenin.github.io`). HTTPS is enforced; giacobenin.github.io redirects.
+- Don't delete `CNAME`: that switches the custom domain off.
