@@ -72,8 +72,9 @@ search engines) and FOAF, side by side on the same elements. Keep them in sync.
   on hover via `.defined`). Never link a page you couldn't load.
   AWS services also get `provider: Q456157` (Amazon Web Services).
 - **One renderer.** Produce technology/concept markup only through
-  `_includes/concept.html` (`tag=true` for CV tags, `standalone=true` outside
-  a block that already has the person as subject, e.g. the About page).
+  `_includes/concept.html` (`tag=true` for CV tags, `link=true` for a visible
+  link). The About text block and the CV already set the person as RDFa
+  subject, so includes there need no `standalone=true`; use it only elsewhere.
   Concepts with `mention: true` are marked up automatically wherever their
   exact name appears in a CV bullet.
 - **Employment** uses the schema.org Role pattern on each `.job-head`: person
@@ -108,6 +109,19 @@ search engines) and FOAF, side by side on the same elements. Keep them in sync.
   `application/ld+json` block) and that its `knowsAbout`, `worksFor` and
   `alumniOf` identifiers match the RDFa.
 - `llms.txt` is Liquid-generated; it needs no edits unless its sections change.
+
+## Semantic HTML
+
+Use meaningful elements around the RDFa, not generic wrappers:
+- `<article>` for each job, degree, publication and project; `<header>` for a
+  job/degree heading block; `<p>` for text, not `<span>`/`<div>`.
+- `<time datetime>` for dates; `<cite>` for titles of works; `<dfn title>`
+  for terms defined on the site; lists (`<ul>`/`<ol>`) for lists (CV tags).
+- Put a name in `<meta property="schema:name" content>` rather than wrapping
+  the visible text in an extra `<span>`. A `<span>` is only for an RDFa node
+  that has no better element.
+- After markup refactors, compare the RDF graph (isomorphic), visible text and
+  JSON-LD before/after: all three should be unchanged.
 
 ## Build constraints
 
