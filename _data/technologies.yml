@@ -2,21 +2,23 @@
 # _data/cv.yml. All fields are optional; a tag with none still shows.
 #   wikidata: Wikidata item ID (https://www.wikidata.org/wiki/<ID>)
 #   url:      official page, used when there is no Wikidata item
-#   type:     schema.org class, e.g. SoftwareApplication or ComputerLanguage
+#   type:     schema.org class: Service for managed cloud services (AWS),
+#             SoftwareApplication for software you install or run,
+#             ComputerLanguage, DefinedTerm; default Thing
 #   provider: Wikidata ID of the organization providing it
 #   part_of:  Wikidata ID of the product it is a feature of
 #   description: definition, for concepts defined here (no Wikidata item or official page)
 # Q456157 is Amazon Web Services.
 
-# AWS services
-"Lambda":           { wikidata: Q21462856,  type: SoftwareApplication, provider: Q456157 }
-"API Gateway":      { url: "https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html", type: SoftwareApplication, provider: Q456157 }
-"Glue":             { wikidata: Q104861519, type: SoftwareApplication, provider: Q456157 }
-"Step Functions":   { url: "https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html", type: SoftwareApplication, provider: Q456157 }
-"EventBridge":      { url: "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html", type: SoftwareApplication, provider: Q456157 }
-"Athena":           { wikidata: Q65203360,  type: SoftwareApplication, provider: Q456157 }
-"DynamoDB Streams": { url: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html", type: SoftwareApplication, provider: Q456157, part_of: Q15731832 }   # part of Amazon DynamoDB
-"Kendra":           { url: "https://docs.aws.amazon.com/kendra/latest/dg/what-is-kendra.html", type: SoftwareApplication, provider: Q456157 }
+# AWS managed services (schema:Service); Kiro CLI is installed software
+"Lambda":           { wikidata: Q21462856,  type: Service, provider: Q456157 }
+"API Gateway":      { url: "https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html", type: Service, provider: Q456157 }
+"Glue":             { wikidata: Q104861519, type: Service, provider: Q456157 }
+"Step Functions":   { url: "https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html", type: Service, provider: Q456157 }
+"EventBridge":      { url: "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html", type: Service, provider: Q456157 }
+"Athena":           { wikidata: Q65203360,  type: Service, provider: Q456157 }
+"DynamoDB Streams": { url: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html", type: Service, provider: Q456157, part_of: Q15731832 }   # part of Amazon DynamoDB
+"Kendra":           { url: "https://docs.aws.amazon.com/kendra/latest/dg/what-is-kendra.html", type: Service, provider: Q456157 }
 "Kiro CLI":         { url: "https://kiro.dev/cli/", type: SoftwareApplication, provider: Q456157 }
 
 # Other software
@@ -50,7 +52,7 @@
 # Concepts linked on the About page (via the include, not CV tags)
 "distributed systems":   { wikidata: Q180634 }      # distributed computing
 "platform engineering":  { wikidata: Q130239811 }
-"DynamoDB":              { wikidata: Q15731832, type: SoftwareApplication, provider: Q456157 }   # Amazon DynamoDB
+"DynamoDB":              { wikidata: Q15731832, type: Service, provider: Q456157 }   # Amazon DynamoDB
 "middleware":            { wikidata: Q146768 }
 "mobile ad hoc network": { wikidata: Q577877 }
 "Internet of Things":    { wikidata: Q251212 }

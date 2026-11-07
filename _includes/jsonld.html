@@ -73,7 +73,7 @@ Kept separate from jekyll-seo-tag's small WebSite block.
 {%- if page.url == '/' -%}
   ,{"@type":"AboutPage","@id":{{ page.url | absolute_url | jsonify }},"about":{"@id":{{ me | jsonify }}},"mentions":[
   {%- for v in site.data.venues -%}
-    {"@type":"EventSeries","@id":"{{ wd }}{{ v[1].wikidata }}","name":{{ v[1].name | jsonify }}{% if v[1].held_with %},"superEvent":{"@id":"{{ wd }}{{ v[1].held_with }}"}{% endif %}}{% unless forloop.last %},{% endunless %}
+    {"@type":"EventSeries","@id":"{{ wd }}{{ v[1].wikidata }}","name":{{ v[1].name | jsonify }}{% if v[1].held_with %},"superEvent":{"@type":"EventSeries","@id":"{{ wd }}{{ v[1].held_with }}","name":{{ v[1].held_with_name | jsonify }}}{% endif %}}{% unless forloop.last %},{% endunless %}
   {%- endfor -%}
   ]}
 {%- elsif page.url == '/publications/' -%}

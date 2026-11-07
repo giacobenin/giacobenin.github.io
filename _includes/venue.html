@@ -6,5 +6,5 @@ current page schema:mentions a schema:EventSeries identified by Wikidata.
 {%- endcomment -%}
 {%- assign v = site.data.venues[include.id] -%}
 <span prefix="schema: https://schema.org/" resource="{{ page.url | absolute_url }}"><span property="schema:mentions" resource="http://www.wikidata.org/entity/{{ v.wikidata }}" typeof="schema:EventSeries"><meta property="schema:name" content="{{ v.name | xml_escape }}">
-{%- if v.held_with %}<link property="schema:superEvent" href="http://www.wikidata.org/entity/{{ v.held_with }}">{% endif -%}
+{%- if v.held_with %}<span property="schema:superEvent" resource="http://www.wikidata.org/entity/{{ v.held_with }}" typeof="schema:EventSeries"><meta property="schema:name" content="{{ v.held_with_name | xml_escape }}"></span>{% endif -%}
 {{ include.text | default: v.name | xml_escape }}</span></span>
