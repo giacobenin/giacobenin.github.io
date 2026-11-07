@@ -105,6 +105,17 @@ search engines) and FOAF, side by side on the same elements. Keep them in sync.
 - **Work locations** are `schema:City` (Wikidata IRI, GeoNames `sameAs`) on the
   role via `schema:workLocation`. Never use the organization's `location`:
   that would say where the company is, not where the job was.
+- **Referenced nodes must be typed and named.** Any object of a property
+  (`provider`, `author`, `parentOrganization`, `superEvent`, `isRelatedTo`…)
+  needs `typeof`/`@type` and a name, not a bare `<link href>` or `{"@id"}`:
+  the Schema.org validator reports bare IDs as errors ("could not convert this
+  value to the correct type"). Look organizations up in
+  `_data/organizations.yml` by Wikidata ID.
+- **Expected validator output:** 0 errors. The only warnings are
+  `workLocation` on `EmployeeRole` (kept on purpose, see Work locations; the
+  Publications page repeats them per authored item, so ~96 there) and, in
+  Google's Rich Results Test, "invalid Software App" for real software. Both
+  are harmless; don't change the data to silence them.
 - **Venues** are not skills: they render as `schema:EventSeries` that the page
   `schema:mentions` (via `_includes/venue.html`), never as `knowsAbout`.
 - IRIs use `site.url` (`https://gbenin.casa`) on purpose, so they stay stable
