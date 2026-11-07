@@ -5,8 +5,10 @@
 #   type:     schema.org class: Service for managed cloud services (AWS),
 #             SoftwareApplication for software you install or run,
 #             ComputerLanguage, DefinedTerm; default Thing
-#   provider: Wikidata ID of the organization providing it
-#   part_of:  Wikidata ID of the product it is a feature of
+#   provider: Wikidata ID of the organization providing it (must also be in
+#             _data/organizations.yml, which supplies its type and name)
+#   part_of:  Wikidata ID of the service it is a feature of (an entry in this
+#             file); rendered as schema:isRelatedTo, valid for a Service
 #   description: definition, for concepts defined here (no Wikidata item or official page)
 # Q456157 is Amazon Web Services.
 

@@ -4,6 +4,7 @@
 # as schema:url / schema:sameAs. `parent` is the Wikidata ID of the parent
 # organization (schema:parentOrganization), e.g. a department's university.
 "Amazon":  { name: "Amazon",  wikidata: Q3884,     url: "https://www.aboutamazon.com/" }
+"AWS":     { name: "Amazon Web Services", wikidata: Q456157, url: "https://aws.amazon.com/" }   # provider of AWS services (_data/technologies.yml)
 "Optym":   { name: "Optym",   wikidata: Q30282954, url: "https://www.optym.com/" }
 "Amadeus": { name: "Amadeus IT Group", wikidata: Q696061, url: "https://amadeus.com/en" }
 "IHMC":    { name: "Florida Institute for Human & Machine Cognition", wikidata: Q5461457, url: "https://www.ihmc.us/" }

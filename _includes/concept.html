@@ -18,6 +18,9 @@ element.
   {%- capture cid %}{{ "/cv/" | absolute_url }}#tech-{{ include.name | slugify }}{% endcapture -%}
 {%- endif -%}
 {%- assign shown = include.text | default: include.name -%}
+{%- assign prov = nil -%}{%- assign rel = nil -%}
+{%- if c.provider -%}{%- for o in site.data.organizations -%}{%- if o[1].wikidata == c.provider %}{% assign prov = o[1] %}{% endif -%}{%- endfor -%}{%- endif -%}
+{%- if c.part_of -%}{%- for e in site.data.technologies -%}{%- if e[1].wikidata == c.part_of %}{% assign rel_name = e[0] %}{% assign rel = e[1] %}{% endif -%}{%- endfor -%}{%- endif -%}
 {%- if include.tag -%}{%- assign el = "li" -%}{%- elsif c.description and include.link != true -%}{%- assign el = "dfn" -%}{%- else -%}{%- assign el = "span" -%}{%- endif -%}
 {%- if include.standalone -%}
 <span prefix="schema: https://schema.org/ foaf: http://xmlns.com/foaf/0.1/" resource="{{ "/publications/" | absolute_url }}#{{ site.author.publication_name | slugify }}">
@@ -25,8 +28,8 @@ element.
 <{{ el }}{% if include.tag %} class="tech-tag"{% elsif el == "dfn" %} title="{{ c.description | xml_escape }}"{% endif %} property="schema:knowsAbout foaf:topic_interest" resource="{{ cid }}" typeof="schema:{{ c.type | default: "Thing" }}"><meta property="schema:name" content="{{ include.name | xml_escape }}">
 {%- if c.description %}<meta property="schema:description" content="{{ c.description | xml_escape }}">{% endif -%}
 {%- if c.url %}{% unless include.link %}<link property="schema:url schema:sameAs" href="{{ c.url }}">{% endunless %}{% endif -%}
-{%- if c.provider %}<link property="schema:provider" href="http://www.wikidata.org/entity/{{ c.provider }}">{% endif -%}
-{%- if c.part_of %}<link property="schema:isPartOf" href="http://www.wikidata.org/entity/{{ c.part_of }}">{% endif -%}
+{%- if c.provider %}<span property="schema:provider" resource="http://www.wikidata.org/entity/{{ c.provider }}" typeof="schema:{{ prov.type | default: 'Organization' }}"><meta property="schema:name" content="{{ prov.name | xml_escape }}"></span>{% endif -%}
+{%- if c.part_of %}<span property="schema:isRelatedTo" resource="http://www.wikidata.org/entity/{{ c.part_of }}" typeof="schema:{{ rel.type | default: 'Thing' }}"><meta property="schema:name" content="{{ rel_name | xml_escape }}"></span>{% endif -%}
 {%- if include.link and c.url %}<a property="schema:url schema:sameAs" href="{{ c.url }}">{{ shown | xml_escape }}</a>{% else %}{{ shown | xml_escape }}{% endif -%}
 </{{ el }}>
 {%- if include.standalone %}</span>{% endif -%}
