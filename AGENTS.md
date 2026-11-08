@@ -177,9 +177,10 @@ After pushing to `main`:
 
 ## Git and hosting
 
-- Push to `main` over HTTPS; there is no SSH key on the owner's machine. If
-  plain `git push` isn't authenticated, use
-  `git -c credential.helper='!gh auth git-credential' push origin main`.
+- Push to `main` over HTTPS with plain `git push`; there is no SSH key on the
+  owner's machine. Git gets GitHub credentials from the gh CLI (configured
+  with `gh auth setup-git`). If a push is ever rejected for authentication,
+  check `gh auth status` and re-run `gh auth setup-git`.
 - Commit messages: imperative subject, short body saying why.
 
 ## Hosting
