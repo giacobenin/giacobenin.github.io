@@ -74,7 +74,7 @@ Kept separate from jekyll-seo-tag's small WebSite block.
 {%- comment -%} Page-specific nodes {%- endcomment -%}
 {%- capture extra -%}
 {%- if page.url == '/' -%}
-  ,{"@type":"ProfilePage","@id":{{ page.url | absolute_url | jsonify }},"url":{{ page.url | absolute_url | jsonify }},"name":{{ site.author.name | jsonify }},"mainEntity":{"@id":{{ me | jsonify }}},"about":{"@id":{{ me | jsonify }}},"mentions":[
+  ,{"@type":"ProfilePage","@id":{{ page.url | absolute_url | jsonify }},"url":{{ page.url | absolute_url | jsonify }},"name":{{ site.author.name | jsonify }},"mainEntity":{"@id":{{ me | jsonify }}},"about":{"@id":{{ me | jsonify }}},"author":{"@id":{{ me | jsonify }}},"publisher":{"@id":{{ me | jsonify }}},"mentions":[
   {%- for v in site.data.venues -%}
     {"@type":"EventSeries","@id":"{{ wd }}{{ v[1].wikidata }}","name":{{ v[1].name | jsonify }}{% if v[1].held_with %},"superEvent":{"@type":"EventSeries","@id":"{{ wd }}{{ v[1].held_with }}","name":{{ v[1].held_with_name | jsonify }}}{% endif %}}{% unless forloop.last %},{% endunless %}
   {%- endfor -%}

@@ -6,6 +6,10 @@
   {%- comment -%} GitHub Pages can't send custom headers, so the CSP is a meta tag (frame-ancestors, COOP and HSTS can't be set this way). The site runs no scripts: JSON-LD blocks are data and aren't affected. Update this if you add images, scripts or external resources. {%- endcomment %}
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types 'none'">
   {% seo %}
+  {%- comment -%} index,follow is the default; the max-* directives allow full snippets and large image previews. The 404 page is kept out of the index. {%- endcomment %}
+  <meta name="robots" content="{% if page.url contains '404' %}noindex, follow{% else %}index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1{% endif %}">
+  {%- comment -%} Non-standard, read by some SEO tools; the meaningful version is "publisher" in the JSON-LD (_includes/jsonld.html). {%- endcomment %}
+  <meta name="publisher" content="{{ site.author.name }}">
   {% include jsonld.html %}
   {% feed_meta %}
   {%- comment -%} Self-hosted variable font (all weights in one file), preloaded. {%- endcomment %}
