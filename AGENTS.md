@@ -42,6 +42,9 @@ this repo are the whole design. See `README.md` for editing basics.
 
 - One typeface (Inter Tight, self-hosted), black on white, one accent
   (`$accent`, orange). Variables are at the top of `_includes/site.scss`.
+  Orange *text* uses the darker `$accent-text` (4.62:1 on white, WCAG AA);
+  the brighter `$accent` is only for large text (title dots), underlines,
+  borders and the focus ring, which need 3:1.
 - Nothing may block the first paint or call a third party: CSS is compiled
   with `scssify` and inlined by `_layouts/default.html`; fonts are local
   (`assets/fonts/`, SIL OFL, `OFL.txt` alongside) with 400 and 800
