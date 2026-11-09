@@ -59,6 +59,12 @@ this repo are the whole design. See `README.md` for editing basics.
   turns it into the meta description and `og:description`. Don't hand-write
   meta/Open Graph tags.
 - Keep it dependency-free: no JavaScript, no icon fonts, no theme gem.
+- A strict Content-Security-Policy (with Trusted Types) is set as a `<meta>`
+  tag in `_layouts/default.html`, since GitHub Pages can't send custom headers.
+  It allows only the inline stylesheet, local fonts and local images: adding a
+  script, an external resource, an image from another host or a form means
+  updating it, or the browser silently blocks the new thing. Frame control,
+  COOP and HSTS are header-only, so they can't be set on GitHub Pages.
 
 ## Semantic markup (RDFa)
 
