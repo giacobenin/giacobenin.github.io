@@ -36,7 +36,7 @@ this repo are the whole design. See `README.md` for editing basics.
 | `llms.txt` (llmstxt.org summary), generated from the data files | `llms.txt` |
 | Layouts: `default` (top bar, footer, `{% seo %}`), `home` (hero + About row), `page` (big title, optional `lead`, rows) | `_layouts/` |
 | All styles (inlined into every page's `<head>`) | `_includes/site.scss` |
-| Self-hosted Inter Tight (Latin, 400/500/700/800) and its licence | `assets/fonts/` |
+| Self-hosted Inter Tight (Latin, one variable file for weights 400–800) and its licence | `assets/fonts/` |
 
 ## Design (Minimal Swiss)
 
@@ -47,9 +47,12 @@ this repo are the whole design. See `README.md` for editing basics.
   borders and the focus ring, which need 3:1.
 - Nothing may block the first paint or call a third party: CSS is compiled
   with `scssify` and inlined by `_layouts/default.html`; fonts are local
-  (`assets/fonts/`, SIL OFL, `OFL.txt` alongside) with 400 and 800
-  preloaded. Don't add external stylesheets, fonts or scripts. A new weight
-  or character set means adding its `.woff2` and `@font-face`.
+  (`assets/fonts/`, SIL OFL, `OFL.txt` alongside): one variable `.woff2`
+  (Google Fonts' Latin subset, weights 400–800), preloaded. Any weight in
+  that range works without new files. Don't add external stylesheets, fonts
+  or scripts. A new character set means adding its `.woff2` and `@font-face`.
+- GitHub Pages serves every file with `cache-control: max-age=600`, and a
+  repo can't change it; don't try to fix cache-lifetime warnings here.
 - Pages are a stack of `<section class="row">` blocks: a small uppercase
   `h2` label in the left column, content in the right (2fr). Below 820px the
   grid collapses to one column. Check both widths after layout changes.
