@@ -9,6 +9,9 @@
   {%- comment -%} index,follow is the default; the max-* directives allow full snippets and large image previews. The 404 page is kept out of the index. {%- endcomment %}
   <meta name="robots" content="{% if page.url contains '404' %}noindex, follow{% else %}index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1{% endif %}">
   {%- comment -%} creator/publisher: registered meta extensions, read by some SEO tools (jekyll-seo-tag already emits "author"); search engines use author/publisher in the JSON-LD (_includes/jsonld.html). {%- endcomment %}
+  {%- if page.keywords %}
+  <meta name="keywords" content="{{ page.keywords | xml_escape }}">
+  {%- endif %}
   <meta name="creator" content="{{ site.author.name }}">
   <meta name="publisher" content="{{ site.author.name }}">
   {% include jsonld.html %}

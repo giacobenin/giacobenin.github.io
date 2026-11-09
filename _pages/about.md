@@ -2,6 +2,7 @@
 permalink: /
 layout: home
 label: "About Me"   # section label; no `title`, so the home <title> is "name | tagline"
+keywords: "Giacomo Benincasa, software engineer, distributed systems, platform engineering, serverless computing, AWS, DevOps, Domain-Driven Design, middleware, mobile ad hoc networks, tactical edge networks, networking research"   # from the concepts in the text below
 description: "Giacomo Benincasa is a senior software engineer building distributed systems and cloud platforms, with a background in networking research."
 ---
 

@@ -63,7 +63,10 @@ this repo are the whole design. See `README.md` for editing basics.
 - CV bullets are numbered (`ol.items`); tags render as `#Name` via CSS.
 - Every page sets `description` in front matter (≤ ~155 characters); `{% seo %}`
   turns it into the meta description and `og:description`. Don't hand-write
-  meta/Open Graph tags.
+  meta/Open Graph tags. Optional `keywords` in front matter becomes
+  `<meta name="keywords">` (search engines ignore it; keep it to concepts
+  the page actually covers). `robots`, `creator` and `publisher` meta tags
+  are set once in `_layouts/default.html`.
 - Keep it dependency-free: no JavaScript, no icon fonts, no theme gem.
 - A strict Content-Security-Policy (with Trusted Types) is set as a `<meta>`
   tag in `_layouts/default.html`, since GitHub Pages can't send custom headers.
