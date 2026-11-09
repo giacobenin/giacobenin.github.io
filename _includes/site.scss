@@ -12,10 +12,27 @@ $rule: #dddddd;
 $accent: #ff4a1c;        // decoration: title dots, underlines, focus ring (3.36:1 on white; needs 3:1)
 $accent-text: #e02d00;   // same hue, for small orange text (4.62:1 on white; needs 4.5:1)
 $bg: #fff;
-$font: "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font: "Inter Tight", "Inter Tight Fallback", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $max: 1120px;
 $gap: 32px;
 $narrow: 820px;
+
+// Fallback shown until Inter Tight loads (font-display: swap): a local system
+// font given Inter Tight's vertical metrics, so text sits at the same height
+// and the swap causes no layout shift (CLS). Separate regular and bold faces,
+// so the browser doesn't synthesize bold. Widths differ by under ~5%.
+@font-face {
+  font-family: "Inter Tight Fallback";
+  font-weight: 100 599;
+  src: local("Arial"), local("ArialMT"), local("Helvetica Neue"), local("HelveticaNeue"), local("Helvetica"), local("Liberation Sans"), local("LiberationSans"), local("Roboto"), local("Noto Sans"), local("DejaVu Sans");
+  ascent-override: 96.875%; descent-override: 24.22%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Inter Tight Fallback";
+  font-weight: 600 900;
+  src: local("Arial Bold"), local("Arial-BoldMT"), local("Helvetica Neue Bold"), local("HelveticaNeue-Bold"), local("Helvetica Bold"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Roboto Bold"), local("Noto Sans Bold"), local("DejaVu Sans Bold");
+  ascent-override: 96.875%; descent-override: 24.22%; line-gap-override: 0%;
+}
 
 // One variable font file covers every weight the design uses (400-800).
 @font-face {
