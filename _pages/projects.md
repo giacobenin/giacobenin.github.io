@@ -11,7 +11,7 @@ the project name is the left-column label. Each project is RDFa (schema.org)
 authored by the site owner, with schema:citation for a related paper. The same
 data feeds the page's JSON-LD (_includes/jsonld.html).
 {% endcomment %}
-{%- capture me %}{{ '/publications/' | absolute_url }}#{{ site.author.publication_name | slugify }}{% endcapture -%}
+{%- capture me %}{{ site.author.id | absolute_url }}{% endcapture -%}
 <div prefix="schema: https://schema.org/">
 {% for p in site.data.projects %}
 <article class="row" resource="{{ p.id }}" typeof="schema:{{ p.type | default: 'SoftwareApplication' }}">

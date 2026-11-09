@@ -23,7 +23,7 @@ element.
 {%- if c.part_of -%}{%- for e in site.data.technologies -%}{%- if e[1].wikidata == c.part_of %}{% assign rel_name = e[0] %}{% assign rel = e[1] %}{% endif -%}{%- endfor -%}{%- endif -%}
 {%- if include.tag -%}{%- assign el = "li" -%}{%- elsif c.description and include.link != true -%}{%- assign el = "dfn" -%}{%- else -%}{%- assign el = "span" -%}{%- endif -%}
 {%- if include.standalone -%}
-<span prefix="schema: https://schema.org/ foaf: http://xmlns.com/foaf/0.1/" resource="{{ "/publications/" | absolute_url }}#{{ site.author.publication_name | slugify }}">
+<span prefix="schema: https://schema.org/ foaf: http://xmlns.com/foaf/0.1/" resource="{{ site.author.id | absolute_url }}">
 {%- endif -%}
 <{{ el }}{% if include.tag %} class="tech-tag"{% elsif el == "dfn" %} title="{{ c.description | xml_escape }}"{% endif %} property="schema:knowsAbout foaf:topic_interest" resource="{{ cid }}" typeof="schema:{{ c.type | default: "Thing" }}"><meta property="schema:name" content="{{ include.name | xml_escape }}">
 {%- if c.description %}<meta property="schema:description" content="{{ c.description | xml_escape }}">{% endif -%}

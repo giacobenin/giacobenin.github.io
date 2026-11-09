@@ -14,6 +14,7 @@ locale                   : "en-US"
 # Sidebar profile
 author:
   name   : "Giacomo Benincasa"
+  id     : "/#person"   # IRI of the site owner (on the home page, the identity hub), used by all RDFa and JSON-LD
   publication_name : "G. Benincasa"   # how your name appears in _publications/ author lists (shown in bold)
   same_as :          # identity links that aren't visible profile links (schema:sameAs only)
     - "https://www.wikidata.org/wiki/Q142072471"

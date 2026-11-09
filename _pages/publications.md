@@ -32,7 +32,7 @@ engines) and FOAF. Co-author home pages come from _data/coauthors.yml.
     <p class="meta">
     {%- for author in pub.authors -%}
       {%- assign homepage = site.data.coauthors[author] -%}
-      {%- capture aid %}{{ '/publications/' | absolute_url }}#{{ author | slugify }}{% endcapture -%}
+      {%- if author == site.author.publication_name %}{% capture aid %}{{ site.author.id | absolute_url }}{% endcapture %}{% else %}{% capture aid %}{{ '/publications/' | absolute_url }}#{{ author | slugify }}{% endcapture %}{% endif -%}
       {%- comment -%} One stable IRI per person, so the same co-author is one node across publications. The name is in <meta>; the visible element is the link or plain text. {%- endcomment -%}
       {%- if author == site.author.publication_name -%}
         {%- comment -%} The site owner: bold, no visible link, but tied to this site and the profiles in _config.yml. {%- endcomment -%}

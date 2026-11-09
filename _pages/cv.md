@@ -15,8 +15,7 @@ _data/technologies.yml. The page is marked up with RDFa: the site owner (the
 same person IRI as on the Publications page) knowsAbout each technology,
 identified by its Wikidata item where one exists.
 {% endcomment %}
-{%- assign me = site.author.publication_name | slugify -%}
-<div prefix="schema: https://schema.org/ foaf: http://xmlns.com/foaf/0.1/" resource="{{ '/publications/' | absolute_url }}#{{ me }}" typeof="schema:Person foaf:Person">
+<div prefix="schema: https://schema.org/ foaf: http://xmlns.com/foaf/0.1/" resource="{{ site.author.id | absolute_url }}" typeof="schema:Person foaf:Person">
 <meta property="schema:name foaf:name" content="{{ site.author.name }}">
 <link property="schema:url foaf:homepage" href="{{ '/' | absolute_url }}">
 

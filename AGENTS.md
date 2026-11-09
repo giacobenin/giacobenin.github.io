@@ -66,8 +66,14 @@ The CV, Publications and About pages carry RDFa using schema.org (read by
 search engines) and FOAF, side by side on the same elements. Keep them in sync.
 
 - **Stable identifiers.** The same thing must have the same IRI everywhere:
-  - The site owner: `{{ '/publications/' | absolute_url }}#g-benincasa`
-    (derived from `author.publication_name`), on every page.
+  - The site owner: `https://gbenin.casa/#person`, from `author.id` in
+    `_config.yml` (`{{ site.author.id | absolute_url }}`), on every page,
+    including your entry in Publications author lists (matched by
+    `author.publication_name`). The home page is the identity hub: its
+    JSON-LD is a `ProfilePage` with this Person as `mainEntity`, and only
+    there is the full Person (sameAs, skills, roles, schools) emitted; other
+    pages reference it by `@id` and add a `BreadcrumbList` back to `/`.
+    Canonical URLs come from jekyll-seo-tag; don't add them by hand.
   - Co-authors: `…/publications/#<name | slugify>`. Names must be spelled
     identically across `_publications/` or they become different people.
   - Technologies/concepts: `http://www.wikidata.org/entity/<QID>` if a
