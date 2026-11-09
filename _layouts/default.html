@@ -47,7 +47,8 @@
       <span>© {{ site.time | date: '%Y' }} {{ site.author.name }}</span>
       <span class="foot-links">
         {%- for link in site.author.links %}
-        <a href="{{ link.url }}" rel="me">{{ link.label }}</a>
+        {%- assign icon = link.icon %}
+        <a href="{{ link.url }}" rel="me" aria-label="{{ link.label }}" title="{{ link.label }}">{% include icons/{{ icon }}.svg %}</a>
         {%- endfor %}
       </span>
     </footer>

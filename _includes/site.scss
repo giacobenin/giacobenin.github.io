@@ -100,11 +100,18 @@ a {
   align-self: end; font-size: 15px;
   p { margin: 0 0 14px; }
 }
+// Profile links: brand icons (Font Awesome Free, CC BY 4.0; _includes/icons/),
+// named by aria-label/title. Padding keeps each target at least 24px.
+.hero-links, .foot-links { display: flex; flex-wrap: wrap; gap: 6px; }
 .hero-links a, .foot-links a {
-  display: inline-block; margin-right: 14px; font-weight: 500;
-  text-decoration: none; border-bottom: 2px solid $accent;
+  display: inline-flex; padding: 4px;
+  color: inherit; text-decoration: none;
   &:hover { color: $accent-text; }
 }
+.hero-links { margin-left: -4px; }   // align the first icon with the text above
+.hero-links .icon { width: 22px; height: 22px; }
+.foot-links .icon { width: 18px; height: 18px; }
+.icon { display: block; }
 .dot { color: $accent; }
 
 // Inner page title

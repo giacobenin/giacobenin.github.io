@@ -8,7 +8,8 @@ layout: default
     <p>{{ site.description }}</p>
     <p class="hero-links">
       {%- for link in site.author.links %}
-      <a href="{{ link.url }}" rel="me">{{ link.label }}</a>
+      {%- assign icon = link.icon %}
+      <a href="{{ link.url }}" rel="me" aria-label="{{ link.label }}" title="{{ link.label }}">{% include icons/{{ icon }}.svg %}</a>
       {%- endfor %}
     </p>
   </div>

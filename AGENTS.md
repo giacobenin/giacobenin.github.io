@@ -36,6 +36,7 @@ this repo are the whole design. See `README.md` for editing basics.
 | `llms.txt` (llmstxt.org summary), generated from the data files | `llms.txt` |
 | Layouts: `default` (top bar, footer, `{% seo %}`), `home` (hero + About row), `page` (big title, optional `lead`, rows) | `_layouts/` |
 | All styles (inlined into every page's `<head>`) | `_includes/site.scss` |
+| Profile-link icons (hero and footer): one inline SVG per `icon` in `author.links`, Font Awesome Free brands (CC BY 4.0; keep the licence comment), `fill="currentColor"`, `aria-hidden`; the link's `label` is its `aria-label`/`title` | `_includes/icons/` |
 | Favicons (`favicon.svg`, `favicon.ico`, `apple-touch-icon.png`, repo root): "g." in Inter Tight 800 with the orange dot; regenerate with the script, don't hand-edit | `_tools/make_favicon.py` |
 | Self-hosted Inter Tight (Latin, one variable file for weights 400–800) and its licence | `assets/fonts/` |
 

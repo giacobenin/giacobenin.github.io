@@ -22,18 +22,18 @@ author:
   avatar : # "/assets/images/profile.jpg"  (uncomment after adding a square photo)
   bio    : "Senior Software Engineer"
   location : # optional
-  links:
+  links:            # icon: file name in _includes/icons/ (shown instead of the label; label becomes its accessible name)
     - label: "Google Scholar"
-      icon: "fas fa-fw fa-graduation-cap"
+      icon: "google-scholar"
       url: "https://scholar.google.com/citations?user=fa77M2IAAAAJ"
     - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
+      icon: "linkedin"
       url: "https://www.linkedin.com/in/gbenincasa/"
     - label: "GitHub"
-      icon: "fab fa-fw fa-github"
+      icon: "github"
       url: "https://github.com/giacobenin"
     - label: "ORCID"
-      icon: "fab fa-fw fa-orcid"
+      icon: "orcid"
       url: "https://orcid.org/0000-0002-6357-9043"
 
 footer:
