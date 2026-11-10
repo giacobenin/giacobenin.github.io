@@ -9,5 +9,6 @@ authors:
   - "G. Benincasa"
 et_al: true
 venue: "IEEE ICMCIS 2016"
+paperurl: "https://doi.org/10.1109/ICMCIS.2016.7496574"
 pubtype: "paper"
 ---

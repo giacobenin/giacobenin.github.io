@@ -8,5 +8,6 @@ authors:
   - "N. Suri"
 et_al: true
 venue: "IEEE Software, 31(2), 2014"
+paperurl: "https://doi.org/10.1109/MS.2013.144"
 pubtype: "paper"
 ---

@@ -6,5 +6,6 @@ authors:
   - "N. Suri"
   - "S. Doken"
 venue: "US Patent Application 16/330,341, 2019"
+paperurl: "https://patents.google.com/patent/US20190204108A1/en"
 pubtype: "patent"
 ---

@@ -14,5 +14,6 @@ authors:
   - "V. Pellegrini"
 et_al: true
 venue: "IEEE 4th World Forum on Internet of Things (WF-IoT 2018)"
+paperurl: "https://doi.org/10.1109/WF-IoT.2018.8355117"
 pubtype: "paper"
 ---
