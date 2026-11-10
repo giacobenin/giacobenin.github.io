@@ -189,8 +189,14 @@ cite { font-style: normal; }
   &:last-child { margin-bottom: 0; }
   .yr { font-weight: 700; font-variant-numeric: tabular-nums; }
   .pub-title { font-weight: 700; }
-  a.pub-title { text-decoration-thickness: 2px; }
   .meta { color: $muted; font-size: 15px; margin: 0; }
+  // Link to the paper/patent: a small tag (like the CV's #tags), not the title.
+  .pub-links { margin: 2px 0 0; font-size: 13px; font-weight: 500; }
+  .pub-links a {
+    color: $muted; text-decoration: none;
+    &::after { content: " \2197"; color: $accent-text; }   // ↗
+    &:hover { color: $accent-text; text-decoration: underline; }
+  }
 }
 
 // Footer

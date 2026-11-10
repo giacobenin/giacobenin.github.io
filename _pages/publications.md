@@ -24,11 +24,7 @@ engines) and FOAF. Co-author home pages come from _data/coauthors.yml.
   <li><article class="pub" typeof="{{ pubclass }} foaf:Document">
     <time class="yr" datetime="{{ pub.date | date: '%Y' }}">{{ pub.date | date: '%Y' }}</time>
     <div>
-    {%- if pub.paperurl -%}
-    <a class="pub-title" property="schema:url" href="{{ pub.paperurl }}"><cite property="schema:name dc:title">{{ pub.title }}</cite></a>
-    {%- else -%}
     <cite class="pub-title" property="schema:name dc:title">{{ pub.title }}</cite>
-    {%- endif -%}
     <p class="meta">
     {%- for author in pub.authors -%}
       {%- assign homepage = site.data.coauthors[author] -%}
@@ -48,6 +44,11 @@ engines) and FOAF. Co-author home pages come from _data/coauthors.yml.
       {%- unless forloop.last %}, {% endunless -%}
     {%- endfor -%}
     {%- if pub.et_al %}, et al.{% else %}.{% endif %} <em>{{ pub.venue }}</em>.</p>
+    {%- if pub.paperurl %}
+    {%- comment -%} The link to the work is a small tag, not the title, to keep the list quiet. {%- endcomment -%}
+    {%- if pub.paperurl contains "doi.org" %}{% assign linklabel = "DOI" %}{% elsif pub.paperurl contains "patents.google" %}{% assign linklabel = "Google Patents" %}{% else %}{% assign linklabel = "Link" %}{% endif %}
+    <p class="pub-links"><a property="schema:url" href="{{ pub.paperurl }}">{{ linklabel }}</a></p>
+    {%- endif %}
     <meta property="schema:datePublished" content="{{ pub.date | date: '%Y' }}">
     </div>
   </article></li>
