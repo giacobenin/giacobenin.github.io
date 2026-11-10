@@ -47,7 +47,7 @@ engines) and FOAF. Co-author home pages come from _data/coauthors.yml.
     {%- if pub.paperurl %}
     {%- comment -%} The link to the work is a small tag, not the title, to keep the list quiet. {%- endcomment -%}
     {%- if pub.paperurl contains "doi.org" %}{% assign linklabel = "DOI" %}{% elsif pub.paperurl contains "patents.google" %}{% assign linklabel = "Google Patents" %}{% else %}{% assign linklabel = "Link" %}{% endif %}
-    <p class="pub-links"><a property="schema:url" href="{{ pub.paperurl }}">{{ linklabel }}</a></p>
+    <p class="pub-links"><a property="schema:url" href="{{ pub.paperurl }}">{{ linklabel }}{% include icons/arrow-up-right.svg %}</a></p>
     {%- endif %}
     <meta property="schema:datePublished" content="{{ pub.date | date: '%Y' }}">
     </div>

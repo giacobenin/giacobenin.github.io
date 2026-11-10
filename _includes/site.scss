@@ -194,7 +194,7 @@ cite { font-style: normal; }
   .pub-links { margin: 2px 0 0; font-size: 13px; font-weight: 500; }
   .pub-links a {
     color: $muted; text-decoration: none;
-    &::after { content: " \2197"; color: $accent-text; }   // ↗
+    .arrow { width: .8em; height: .8em; margin-left: 3px; color: $accent-text; vertical-align: -0.05em; }   // _includes/icons/arrow-up-right.svg
     &:hover { color: $accent-text; text-decoration: underline; }
   }
 }
