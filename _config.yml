@@ -69,3 +69,8 @@ defaults:
       type: pages
     values:
       layout: page
+      image:            # social preview (og:image / Twitter large card); regenerate with _tools/make_og_image.py
+        path: /assets/images/og.png
+        width: 1200
+        height: 630
+        alt: "Giacomo Benincasa, Senior Software Engineer & Researcher"

@@ -37,6 +37,7 @@ this repo are the whole design. See `README.md` for editing basics.
 | Layouts: `default` (top bar, footer, `{% seo %}`), `home` (hero + About row), `page` (big title, optional `lead`, rows) | `_layouts/` |
 | All styles (inlined into every page's `<head>`) | `_includes/site.scss` |
 | Profile-link icons (hero and footer): one inline SVG per `icon` in `author.links`, Font Awesome Free brands (CC BY 4.0; keep the licence comment), `fill="currentColor"`, `aria-hidden`; the link's `label` is its `aria-label`/`title` | `_includes/icons/` |
+| Social preview image (`assets/images/og.png`, 1200×630, set for all pages via `defaults` in `_config.yml`): regenerate with the script when the name or tagline changes | `_tools/make_og_image.py` |
 | Favicons (`favicon.svg`, `favicon.ico`, `apple-touch-icon.png`, repo root): "g." in Inter Tight 800 with the orange dot; regenerate with the script, don't hand-edit | `_tools/make_favicon.py` |
 | Self-hosted Inter Tight (Latin, one variable file for weights 400–800) and its licence | `assets/fonts/` |
 
@@ -58,6 +59,11 @@ this repo are the whole design. See `README.md` for editing basics.
 - Pages are a stack of `<section class="row">` blocks: a small uppercase
   `h2` label in the left column, content in the right (2fr). Below 820px the
   grid collapses to one column. Check both widths after layout changes.
+- Colours are CSS custom properties (`:root` in `_includes/site.scss`); the
+  Sass `$ink`, `$muted`… point at them. Dark mode (`prefers-color-scheme`)
+  and print override the properties only. Keep every text colour at 4.5:1
+  in both themes (contrast notes at the top of the stylesheet). Print keeps
+  two columns, hides navigation, and avoids splitting entries across pages.
 - Page titles end in an orange full stop (`<span class="dot">.</span>`).
 - Front matter on pages: `layout` (`page` by default, `home` for About),
   `lead` (Markdown intro under the title), `rows: true` when the page emits

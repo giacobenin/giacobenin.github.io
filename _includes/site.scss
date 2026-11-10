@@ -1,17 +1,21 @@
 // Site stylesheet (no theme). Inlined into every page's <head> by
 // _layouts/default.html (compiled with `scssify`), so the first paint waits
 // for no external file. Inter Tight is self-hosted (assets/fonts, SIL OFL),
-// Latin subset only, weights 400/500/700/800.
+// Latin subset only, one variable file (weights 400-800).
 
 // Minimal Swiss: one heavy grotesque, a strict label | content grid,
 // black on white with a single orange accent.
 
-$ink: #111;
-$muted: #6b6b6b;
-$rule: #dddddd;
-$accent: #ff4a1c;        // decoration: title dots, underlines, focus ring (3.36:1 on white; needs 3:1)
-$accent-text: #e02d00;   // same hue, for small orange text (4.62:1 on white; needs 4.5:1)
-$bg: #fff;
+// Colours are CSS custom properties so dark mode and print can swap them;
+// the Sass variables just point at them. Contrast (WCAG AA) in each theme:
+//   light: ink 18.9, muted 5.3, accent-text 4.62 (text), accent 3.36 (decoration, needs 3)
+//   dark (#121212): ink 15.9, muted 7.0, accent 5.57 (also used for text)
+$ink: var(--ink);
+$muted: var(--muted);
+$rule: var(--rule);
+$accent: var(--accent);
+$accent-text: var(--accent-text);
+$bg: var(--bg);
 $font: "Inter Tight", "Inter Tight Fallback", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $max: 1120px;
 $gap: 32px;
@@ -45,6 +49,15 @@ $narrow: 820px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  color-scheme: light dark;
+  --ink: #111; --muted: #6b6b6b; --rule: #dddddd; --bg: #fff;
+  --accent: #ff4a1c; --accent-text: #e02d00;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --ink: #ececec; --muted: #9e9e9e; --rule: #2c2c2c; --bg: #121212; --accent-text: #ff4a1c; }
+}
 
 html { -webkit-text-size-adjust: 100%; }
 
@@ -213,3 +226,27 @@ cite { font-style: normal; }
   .top nav a { margin-left: 16px; }
   .page-title { padding: 40px 0 28px; }
 }
+
+// Print (mainly the CV): always light, no navigation, two columns kept,
+// entries not split across pages, publication links printed as URLs.
+@media print {
+  :root { --ink: #000; --muted: #444; --rule: #bbb; --bg: #fff; --accent-text: #c42800; color-scheme: light; }
+  @page { margin: 16mm 14mm; }
+  body { font-size: 10pt; }
+  .wrap { max-width: none; padding: 0; }
+  .skip, .top nav, .foot-links, .pub-links .arrow { display: none; }
+  .top { padding-bottom: 6px; }
+  .hero { padding: 16px 0 14px; }
+  .hero h1 { font-size: 36pt; }
+  .hero-links { display: none; }
+  .page-title { padding: 14px 0 10px; font-size: 30pt; }
+  .page-lead { margin-top: 6px; }
+  .hero, .row { grid-template-columns: 1fr 3fr; gap: 16px; }
+  .row { padding: 12px 0; }
+  .row > h2 { break-after: avoid; }
+  .job, .pub, .job-head, .items > li { break-inside: avoid; }
+  a { color: inherit; }
+  .pub-links a::after { content: " " attr(href); }
+  .foot { margin-top: 16px; }
+}
+
