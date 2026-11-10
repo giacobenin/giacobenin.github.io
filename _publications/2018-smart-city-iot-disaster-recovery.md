@@ -1,5 +1,5 @@
 ---
-title: "Exploring Smart City IoT for Disaster Recovery Operations"
+title: "Exploiting Smart City IoT for Disaster Recovery Operations"
 date: 2018-01-01
 authors:
   - "N. Suri"
@@ -9,7 +9,7 @@ authors:
   - "M. Pradhan"
   - "K. Wrona"
   - "J. Furtak"
-  - "B. Vasilache"
+  - "D. Vasilache"
   - "M. D. Street"
   - "V. Pellegrini"
 et_al: true
