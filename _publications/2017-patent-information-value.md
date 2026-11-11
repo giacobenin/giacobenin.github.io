@@ -4,9 +4,7 @@ date: 2022-12-06
 authors:
   - "N. Suri"
   - "G. Benincasa"
-  - "R. Lenzi"
-  - "M. Tortonesi"
-et_al: true
+  - "L. Sadler"
 venue: "US Patent 11,522,977, 2022"
 paperurl: "https://patents.google.com/patent/US11522977B2/en"
 pubtype: "patent"
