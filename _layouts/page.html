@@ -1,7 +1,8 @@
 ---
 layout: default
 ---
-<h1 class="page-title">{{ page.title }}<span class="dot">.</span></h1>
+{%- comment -%} print_bare pages print the owner's name as the heading instead of the page title (the site header and footer are hidden in print). {%- endcomment %}
+<h1 class="page-title">{% if page.print_bare %}<span class="screen-title">{{ page.title }}</span><span class="print-title">{{ site.author.name }}</span>{% else %}{{ page.title }}{% endif %}<span class="dot">.</span></h1>
 
 {%- if page.lead %}
 <div class="page-lead">{{ page.lead | markdownify }}</div>
