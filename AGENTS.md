@@ -65,8 +65,8 @@ this repo are the whole design. See `README.md` for editing basics.
   in both themes (contrast notes at the top of the stylesheet). Print keeps
   two columns, hides navigation, and avoids splitting entries across pages.
   `print_bare: true` in a page's front matter (set on the CV) also drops the
-  site header and footer from the printout and prints the owner's name as
-  the heading instead of the page title.
+  site header, footer and `lead` from the printout and prints the owner's
+  name as the heading instead of the page title.
 - Page titles end in an orange full stop (`<span class="dot">.</span>`).
 - Front matter on pages: `layout` (`page` by default, `home` for About),
   `lead` (Markdown intro under the title), `rows: true` when the page emits

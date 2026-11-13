@@ -255,7 +255,7 @@ cite { font-style: normal; }
   .foot { margin-top: 16px; }
   .print-bare .top, .print-bare .foot { display: none; }   // pages with print_bare: true (the CV) print without site chrome
   .print-bare .page-title { padding-top: 0; }
-  .print-bare .screen-title { display: none; }
+  .print-bare .screen-title, .print-bare .page-lead { display: none; }
   .print-bare .print-title { display: inline; }
 }
 
