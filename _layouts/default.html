@@ -27,7 +27,8 @@
   {%- capture site_styles %}{% include site.scss %}{% endcapture %}
   <style>{{ site_styles | scssify }}</style>
 </head>
-<body>
+{%- comment -%} print_bare: true in a page's front matter hides the site header and footer when that page is printed (see @media print in site.scss). {%- endcomment %}
+<body{% if page.print_bare %} class="print-bare"{% endif %}>
   <a class="skip" href="#main">Skip to content</a>
   <div class="wrap">
     <header class="top">

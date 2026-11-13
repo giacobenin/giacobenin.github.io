@@ -3,6 +3,7 @@ permalink: /cv/
 title: "CV"
 lead: "My full work history is on [LinkedIn](https://www.linkedin.com/in/gbenincasa/)."
 rows: true
+print_bare: true   # print without the site header and footer
 description: "Professional experience of Giacomo Benincasa, senior software engineer at Amazon, previously at Optym/Amadeus, IHMC and the University of West Florida."
 ---
 
